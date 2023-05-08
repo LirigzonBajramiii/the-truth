@@ -3,7 +3,9 @@
     <Header></Header>
 
     <!-- router-view shfaq contentin qe e permbane nje view  -->
-    <router-view />   
+     <div class="container">
+        <router-view />   
+     </div>
   </div>
 </template>
 
@@ -27,6 +29,12 @@ export default {
 
 body {
   font-family: sans-serif;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0;
 }
 
 
