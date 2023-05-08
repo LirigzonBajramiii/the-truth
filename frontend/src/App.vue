@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div>
+    <Header></Header>
+
+    <!-- router-view shfaq contentin qe e permbane nje view  -->
+    <router-view />   
   </div>
 </template>
 
+<script>
+import Header from '@/components/utilities/Header.vue'
+export default {
+  name: 'app-view',
+  components: {
+    Header
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-nav {
-  padding: 30px;
+body {
+  font-family: sans-serif;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

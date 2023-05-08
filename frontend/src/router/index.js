@@ -4,6 +4,8 @@ import Home from "@/views/home/Home.vue";
 import Events from "@/views/events/Events.vue";
 import News from "@/views/news/News.vue";
 import About from "@/views/about/About.vue";
+import Login from "@/views/users/LoginView.vue"
+import Register from "@/views/users/RegisterView.vue"
 
 Vue.use(VueRouter);
 
@@ -27,6 +29,16 @@ const routes = [
     path: "/about",
     name: "about",
     component: About,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: Register,
   },
 ];
 

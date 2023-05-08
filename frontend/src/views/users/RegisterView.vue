@@ -1,12 +1,12 @@
 <template>
   <div>
-    Events
+    Register
   </div>
 </template>
 
 <script>
 export default {
-  name: "events-view",
+  name: "register-view",
 };
 </script>
 
