@@ -2,7 +2,7 @@
   <div>
     <div class="latest-news">
       <section class="latest">
-        Lajmi i fundit 
+        {{news}}
       </section>
       <section class="other-news">
         Lajme tjera
@@ -22,6 +22,23 @@
 <script>
   export default {
     name: "news-view",
+    data() {
+      return {
+        news: null
+      }
+    },
+    methods:  {
+       async getNews() {
+        
+        const response = await fetch('http://localhost:3000/api/news/list');
+        const data = await response.json();
+        this.news = data;
+        
+      }
+    },
+    beforeMount() {
+      this.getNews();
+    }
   };
 </script>
 
