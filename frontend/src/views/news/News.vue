@@ -2,44 +2,38 @@
   <div>
     <div class="latest-news">
       <section class="latest">
-        {{news}}
+        <div v-for="news in newsList" :key="news._id">
+          {{ news.title }}
+        </div>
       </section>
-      <section class="other-news">
-        Lajme tjera
-      </section>
+      <section class="other-news">Lajme tjera</section>
     </div>
     <div class="in-focus">
-      <section class="in-focus-news">
-        In focus lajme
-      </section>
-      <section class="slider">
-        Slider
-      </section>
+      <section class="in-focus-news">In focus lajme</section>
+      <section class="slider">Slider</section>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "news-view",
-    data() {
-      return {
-        news: null
-      }
+export default {
+  name: "news-view",
+  data() {
+    return {
+      newsList: null,
+    };
+  },
+  methods: {
+    async getNews() {
+      const response = await fetch("http://localhost:3000/api/news/list");
+      const data = await response.json();
+      this.newsList = data;
     },
-    methods:  {
-       async getNews() {
-        
-        const response = await fetch('http://localhost:3000/api/news/list');
-        const data = await response.json();
-        this.news = data;
-        
-      }
-    },
-    beforeMount() {
-      this.getNews();
-    }
-  };
+  },
+  beforeMount() {
+    this.getNews();
+  },
+};
 </script>
 
 <style scoped>
@@ -48,7 +42,6 @@
   grid-template-columns: 6fr 3fr;
   gap: 22px;
   color: #fff;
-
 }
 
 .latest {
@@ -80,5 +73,4 @@
 .slider {
   background-color: darkgreen;
 }
-
 </style>

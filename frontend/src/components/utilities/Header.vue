@@ -16,6 +16,9 @@
           <router-link to="/about">About</router-link>   
         </li>
         <li> 
+          <router-link to="/create/news">Create News</router-link>   
+        </li>
+        <li> 
           <router-link to="/login">Login</router-link>   
         </li>
         <li> 
