@@ -1,11 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const newsModel  = require('../models/newsModel');
 
 const arr = [1,3,5,6];
 // GET news
-router.get('/list', (req, res) => {
+router.get('/list', async (req, res) => {
   try {
-    res.status(200).json(arr)
+    const list = await newsModel.find();
+    res.status(200).json(list)
   }
   catch(error) {
     res.status(400).json({message: error.message})
@@ -19,6 +21,9 @@ router.get('/list/:id', (req,res) => {
 
 // POST new news
 router.post('/create', (req,res) => {
+
+  const {title, desc, author} = req.body;
+  
   res.json({message: "new news  route"})
 })
 
