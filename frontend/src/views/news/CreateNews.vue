@@ -21,6 +21,18 @@
           <el-input type="textarea" v-model="ruleForm.desc"></el-input>
         </el-form-item>
 
+        <el-form-item label="Category" prop="category">
+          <el-select v-model="ruleForm.category" placeholder="Select">
+            <el-option
+              v-for="(category, index) in categories"
+              :key="index"
+              :label="category"
+              :value="category"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')"
             >Create</el-button
@@ -41,7 +53,9 @@ export default {
         title: "",
         author: "",
         desc: "",
+        category: "",
       },
+      categories: ["Lajme", "Shendetesi", "Sport", "Tjera"],
       rules: {
         title: [
           {
@@ -70,6 +84,13 @@ export default {
             trigger: "blur",
           },
         ],
+        category: [
+          {
+            required: true,
+            message: "Please select a category",
+            trigger: "blur",
+          },
+        ],
       },
     };
   },
@@ -82,6 +103,7 @@ export default {
             title: this.ruleForm.title,
             author: this.ruleForm.author,
             desc: this.ruleForm.desc,
+            category: this.ruleForm.category,
           };
           console.log("payload frontend", payload);
           const response = await fetch(

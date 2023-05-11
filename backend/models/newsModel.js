@@ -5,6 +5,7 @@ const schema = mongoose.Schema(
     title: String,
     desc: String,
     author: String,
+    category: String,
   },
   { timestamps: true }
 );
