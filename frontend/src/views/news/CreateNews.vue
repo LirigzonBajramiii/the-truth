@@ -118,11 +118,16 @@ export default {
           );
 
           const newNews = await response.json();
+
           console.log(newNews);
         } else {
           console.log("error submit!!");
           return false;
         }
+        this.ruleForm.title = "";
+        this.ruleForm.author = "";
+        this.ruleForm.desc = "";
+        this.ruleForm.category = "";
       });
     },
     resetForm(formName) {
