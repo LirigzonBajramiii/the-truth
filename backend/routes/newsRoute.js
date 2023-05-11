@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const newsModel = require("../models/newsModel");
 
-const arr = [1, 3, 5, 6];
 // GET news
 router.get("/list", async (req, res) => {
   try {

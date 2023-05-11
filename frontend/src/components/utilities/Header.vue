@@ -3,28 +3,30 @@
     <nav class="nav-container">
       <h3 class="logo">The Truth</h3>
       <ul class="nav-list">
-        <li> 
-          <router-link to="/">Home</router-link>   
+        <li>
+          <router-link to="/">Home</router-link>
         </li>
-        <li> 
-          <router-link to="/news">News</router-link>   
+        <li>
+          <router-link to="/news">News</router-link>
         </li>
-        <li> 
-          <router-link to="/events">Events</router-link>   
+        <li>
+          <router-link to="/events">Events</router-link>
         </li>
-        <li> 
-          <router-link to="/about">About</router-link>   
+        <li>
+          <router-link to="/about">About</router-link>
         </li>
-        <li> 
-          <router-link to="/create/news">Create News</router-link>   
+        <li>
+          <router-link to="/create/news">Create News</router-link>
         </li>
-        <li> 
-          <router-link to="/login">Login</router-link>   
+        <li>
+          <router-link to="/create/category">Create Category</router-link>
         </li>
-        <li> 
-          <router-link to="/register">Register</router-link>   
+        <li>
+          <router-link to="/login">Login</router-link>
         </li>
-
+        <li>
+          <router-link to="/register">Register</router-link>
+        </li>
       </ul>
     </nav>
   </div>
@@ -37,7 +39,6 @@ export default {
 </script>
 
 <style scoped>
-
 .nav-container {
   display: flex;
   justify-content: space-between;
@@ -56,9 +57,8 @@ export default {
   list-style: none;
 }
 
-.nav-list li a{
+.nav-list li a {
   color: #fff;
   text-decoration: none;
 }
-
 </style>

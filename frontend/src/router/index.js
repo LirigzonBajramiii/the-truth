@@ -4,10 +4,10 @@ import Home from "@/views/home/Home.vue";
 import Events from "@/views/events/Events.vue";
 import News from "@/views/news/News.vue";
 import CreateNews from "@/views/news/CreateNews.vue";
+import CreateCategory from "@/views/categories/CreateCategory.vue";
 import About from "@/views/about/About.vue";
-import Login from "@/views/users/LoginView.vue"
-import Register from "@/views/users/RegisterView.vue"
-
+import Login from "@/views/users/LoginView.vue";
+import Register from "@/views/users/RegisterView.vue";
 
 Vue.use(VueRouter);
 
@@ -46,6 +46,11 @@ const routes = [
     path: "/register",
     name: "register",
     component: Register,
+  },
+  {
+    path: "/create/category",
+    name: "category",
+    component: CreateCategory,
   },
 ];
 

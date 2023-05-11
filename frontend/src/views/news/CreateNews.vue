@@ -26,8 +26,8 @@
             <el-option
               v-for="(category, index) in categories"
               :key="index"
-              :label="category"
-              :value="category"
+              :label="category.title"
+              :value="category.title"
             >
             </el-option>
           </el-select>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -55,7 +56,6 @@ export default {
         desc: "",
         category: "",
       },
-      categories: ["Lajme", "Shendetesi", "Sport", "Tjera"],
       rules: {
         title: [
           {
@@ -133,6 +133,17 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+    ...mapActions({
+      fetchCategories: "fetchCategories",
+    }),
+  },
+  computed: {
+    ...mapState({
+      categories: (state) => state.categories,
+    }),
+  },
+  beforeMount() {
+    this.fetchCategories();
   },
 };
 </script>

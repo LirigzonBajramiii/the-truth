@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const newsRouter = require("./routes/newsRoute");
 const cors = require("cors");
+const categoriesRouter = require("./routes/categoriesRoute");
 
 // Krijimi i nje express app
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Middleware
 app.use("/api/news", newsRouter);
+app.use("/api/categories", categoriesRouter);
 
 mongoose
   .connect(process.env.MONGO_URI)
