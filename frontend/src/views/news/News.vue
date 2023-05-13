@@ -33,6 +33,7 @@
         </div>
       </section>
       <section class="slider">
+        <h4 style="margin-bottom: 22px">Carousel News</h4>
         <div class="block">
           <el-carousel height="400px">
             <el-carousel-item v-for="item in newsList" :key="item._id">
@@ -146,10 +147,11 @@ export default {
 }
 
 .slider {
-  height: 430px;
+  height: 500px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 6px;
+  color: #000;
 }
 
 .slider img {
