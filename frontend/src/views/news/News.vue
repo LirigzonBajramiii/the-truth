@@ -2,11 +2,17 @@
   <div>
     <div class="latest-news">
       <section class="latest">
-        <div v-for="news in newsList" :key="news._id">
-          {{ news.title }}
+        <div>
+          <h4>{{ newsList[0].title }}</h4>
+          <img :src="newsList[0].imageUrl" width="100%" height="400px" alt="" />
         </div>
       </section>
-      <section class="other-news">Lajme tjera</section>
+      <section class="other-news">
+        <div v-for="news in newsList" :key="news._id">
+          <h3>{{ news.title }}</h3>
+          <img :src="news.imageUrl" width="100%" height="198px" alt="" />
+        </div>
+      </section>
     </div>
     <div class="in-focus">
       <section class="in-focus-news">In focus lajme</section>
@@ -46,7 +52,7 @@ export default {
 
 .latest {
   width: 100%;
-  height: 400px;
+  height: 100%;
   background-color: darkcyan;
 }
 

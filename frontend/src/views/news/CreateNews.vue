@@ -33,6 +33,22 @@
           </el-select>
         </el-form-item>
 
+        <el-form-item label="Image" prop="imageUrl">
+          <el-upload
+            class="avatar-uploader"
+            :show-file-list="false"
+            action="http://localhost:3000/api/upload"
+            :on-success="handleAvatarSuccess"
+          >
+            <img
+              v-if="ruleForm.imageUrl"
+              :src="ruleForm.imageUrl"
+              class="avatar"
+            />
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
+
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')"
             >Create</el-button
@@ -55,6 +71,7 @@ export default {
         author: "",
         desc: "",
         category: "",
+        imageUrl: "",
       },
       rules: {
         title: [
@@ -91,6 +108,13 @@ export default {
             trigger: "blur",
           },
         ],
+        imageUrl: [
+          {
+            required: true,
+            message: "Please upload an image",
+            trigger: "blur",
+          },
+        ],
       },
     };
   },
@@ -104,6 +128,7 @@ export default {
             author: this.ruleForm.author,
             desc: this.ruleForm.desc,
             category: this.ruleForm.category,
+            imageUrl: this.ruleForm.imageUrl,
           };
           console.log("payload frontend", payload);
           const response = await fetch(
@@ -133,6 +158,23 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+    handleAvatarSuccess(res, file) {
+      const formData = new FormData();
+      formData.append("file", file.raw);
+
+      fetch("http://localhost:3000/api/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.ruleForm.imageUrl = data.imageUrl;
+          console.log(this.ruleForm.imageUrl);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
     ...mapActions({
       fetchCategories: "fetchCategories",
     }),
@@ -152,5 +194,29 @@ export default {
 .form-container {
   width: 748px;
   margin: 50px auto;
+}
+
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
 }
 </style>

@@ -6,6 +6,7 @@ const schema = mongoose.Schema(
     desc: String,
     author: String,
     category: String,
+    imageUrl: String,
   },
   { timestamps: true }
 );

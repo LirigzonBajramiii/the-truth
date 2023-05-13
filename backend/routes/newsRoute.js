@@ -21,10 +21,16 @@ router.get("/list/:id", (req, res) => {
 router.post("/create", async (req, res) => {
   // Desctructuring the payload that we received
   console.log(req.body);
-  const { title, author, desc, category } = req.body;
+  const { title, author, desc, category, imageUrl } = req.body;
 
   try {
-    const newNews = await newsModel.create({ title, author, desc, category });
+    const newNews = await newsModel.create({
+      title,
+      author,
+      desc,
+      category,
+      imageUrl,
+    });
 
     res.status(200).json(newNews);
   } catch (error) {

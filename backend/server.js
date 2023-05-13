@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const newsRouter = require("./routes/newsRoute");
 const cors = require("cors");
 const categoriesRouter = require("./routes/categoriesRoute");
+const uploadImgRouter = require("./routes/uploadImgRoute");
 
 // Krijimi i nje express app
 const app = express();
@@ -14,8 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Middleware
+app.use(express.static("public"));
 app.use("/api/news", newsRouter);
 app.use("/api/categories", categoriesRouter);
+app.use("/api/upload", uploadImgRouter);
 
 mongoose
   .connect(process.env.MONGO_URI)
