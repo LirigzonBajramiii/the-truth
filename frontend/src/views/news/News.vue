@@ -3,20 +3,44 @@
     <div class="latest-news">
       <section class="latest">
         <div>
-          <h4>{{ newsList[0].title }}</h4>
-          <img :src="newsList[0].imageUrl" width="100%" height="400px" alt="" />
+          <h1 style="margin-bottom: 22px">{{ latestNews.title }}</h1>
+          <img
+            class="latest-img"
+            :src="latestNews.imageUrl"
+            width="100%"
+            height="400px"
+            alt=""
+          />
         </div>
       </section>
       <section class="other-news">
         <div v-for="news in newsList" :key="news._id">
-          <h3>{{ news.title }}</h3>
-          <img :src="news.imageUrl" width="100%" height="198px" alt="" />
+          <div class="news-item">
+            <img :src="news.imageUrl" class="other-news-img" alt="" />
+            <h4>{{ news.title }}</h4>
+          </div>
         </div>
       </section>
     </div>
     <div class="in-focus">
-      <section class="in-focus-news">In focus lajme</section>
-      <section class="slider">Slider</section>
+      <section class="in-focus-news">
+        <h4 style="margin-bottom: 22px">Top News</h4>
+        <div v-for="news in newsList" :key="news._id">
+          <div class="in-focus-news-item">
+            <img :src="news.imageUrl" class="in-focus-news-img" alt="" />
+            <h4>{{ news.title }}</h4>
+          </div>
+        </div>
+      </section>
+      <section class="slider">
+        <div class="block">
+          <el-carousel height="400px">
+            <el-carousel-item v-for="item in newsList" :key="item._id">
+              <img :src="item.imageUrl" width="100%" height="100%" alt="" />
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -36,6 +60,14 @@ export default {
       this.newsList = data;
     },
   },
+  computed: {
+    latestNews() {
+      if (this.newsList) {
+        const lastPost = this.newsList[this.newsList?.length - 1];
+        return lastPost;
+      }
+    },
+  },
   beforeMount() {
     this.getNews();
   },
@@ -46,20 +78,42 @@ export default {
 .latest-news {
   display: grid;
   grid-template-columns: 6fr 3fr;
+  height: 500px;
   gap: 22px;
   color: #fff;
+  color: #000;
 }
 
 .latest {
   width: 100%;
   height: 100%;
-  background-color: darkcyan;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.latest-img {
+  border-radius: 6px;
 }
 
 .other-news {
   width: 100%;
+  overflow: auto;
   height: auto;
-  background-color: brown;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.other-news-img {
+  width: 142px;
+  height: 80px;
+}
+
+.news-item {
+  display: flex;
+  gap: 22px;
+  padding-bottom: 10px;
 }
 
 .in-focus {
@@ -71,12 +125,35 @@ export default {
 }
 
 .in-focus-news {
+  color: #000;
   width: 100%;
   height: auto;
-  background-color: coral;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.in-focus-news-item {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 12px;
+}
+
+.in-focus-news-img {
+  width: 320px !important;
+  height: 198px;
+  border-radius: 6px;
 }
 
 .slider {
-  background-color: darkgreen;
+  height: 430px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.slider img {
+  object-fit: cover;
+  border-radius: 6px;
 }
 </style>
