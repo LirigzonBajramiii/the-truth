@@ -3,10 +3,10 @@
     <div class="latest-news">
       <section class="latest">
         <div>
-          <h1 style="margin-bottom: 22px">{{ latestNews.title }}</h1>
+          <h1 style="margin-bottom: 22px">{{ lastNews.title }}</h1>
           <img
             class="latest-img"
-            :src="latestNews.imageUrl"
+            :src="lastNews.imageUrl"
             width="100%"
             height="400px"
             alt=""
@@ -14,7 +14,7 @@
         </div>
       </section>
       <section class="other-news">
-        <div v-for="news in newsList" :key="news._id">
+        <div v-for="news in latestNews" :key="news._id">
           <div class="news-item">
             <img :src="news.imageUrl" class="other-news-img" alt="" />
             <h4>{{ news.title }}</h4>
@@ -72,12 +72,19 @@ export default {
     },
   },
   computed: {
-    latestNews() {
+    lastNews() {
       if (this.newsList) {
         const lastPost = this.newsList[this.newsList?.length - 1];
         return lastPost;
       } else {
         return {};
+      }
+    },
+    latestNews() {
+      if (this.newsList) {
+        return [...this.newsList].reverse();
+      } else {
+        return [];
       }
     },
   },
