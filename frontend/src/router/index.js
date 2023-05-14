@@ -8,6 +8,7 @@ import CreateCategory from "@/views/categories/CreateCategory.vue";
 import About from "@/views/about/About.vue";
 import Login from "@/views/users/LoginView.vue";
 import Register from "@/views/users/RegisterView.vue";
+import SingleNews from "@/views/news/SingleNews.vue";
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,12 @@ const routes = [
     path: "/news",
     name: "news",
     component: News,
+  },
+  {
+    path: "/single-news/:id",
+    name: "singleNews",
+    component: SingleNews,
+    props: true,
   },
   {
     path: "/create/news",

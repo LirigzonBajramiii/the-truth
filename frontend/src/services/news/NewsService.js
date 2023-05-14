@@ -7,4 +7,7 @@ export default {
   postNews(payload) {
     return apiCaller.post("/api/news/create", payload);
   },
+  getSingleNews(id) {
+    return apiCaller.get(`/api/news/list/${id}`);
+  },
 };

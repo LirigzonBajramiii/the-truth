@@ -1,7 +1,9 @@
 <template>
   <div>
     <nav class="nav-container">
-      <h3 class="logo">The Truth</h3>
+      <router-link to="/news">
+        <h3 class="logo">The Truth</h3>
+      </router-link>
       <ul class="nav-list">
         <li>
           <router-link to="/">Home</router-link>
@@ -60,5 +62,9 @@ export default {
 .nav-list li a {
   color: #fff;
   text-decoration: none;
+}
+
+.logo {
+  color: #fff;
 }
 </style>

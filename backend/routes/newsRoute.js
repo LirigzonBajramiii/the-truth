@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const newsModel = require("../models/newsModel");
+const mongoose = require("mongoose");
 
 // GET news
 router.get("/list", async (req, res) => {
@@ -13,8 +14,24 @@ router.get("/list", async (req, res) => {
 });
 
 // GET single news
-router.get("/list/:id", (req, res) => {
-  res.json({ message: "Single news response" });
+router.get("/list/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Check if id is valid
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(404).json({ error: "No such news id is valid" });
+    }
+    const singleNews = await newsModel.findById(id);
+
+    if (!singleNews) {
+      res.status(404).json({ error: "No such news" });
+    }
+
+    res.status(200).json(singleNews);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // POST new news

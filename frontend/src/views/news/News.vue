@@ -2,23 +2,27 @@
   <div>
     <div class="latest-news">
       <section class="latest">
-        <div>
-          <h1 style="margin-bottom: 22px">{{ lastNews.title }}</h1>
-          <img
-            class="latest-img"
-            :src="lastNews.imageUrl"
-            width="100%"
-            height="400px"
-            alt=""
-          />
-        </div>
+        <router-link :to="{ name: 'singleNews', params: { id: lastNews._id } }">
+          <div>
+            <h1 style="margin-bottom: 22px">{{ lastNews.title }}</h1>
+            <img
+              class="latest-img"
+              :src="lastNews.imageUrl"
+              width="100%"
+              height="400px"
+              alt=""
+            />
+          </div>
+        </router-link>
       </section>
       <section class="other-news">
         <div v-for="news in latestNews" :key="news._id">
-          <div class="news-item">
-            <img :src="news.imageUrl" class="other-news-img" alt="" />
-            <h4>{{ news.title }}</h4>
-          </div>
+          <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
+            <div class="news-item">
+              <img :src="news.imageUrl" class="other-news-img" alt="" />
+              <h4>{{ news.title }}</h4>
+            </div>
+          </router-link>
         </div>
       </section>
     </div>
@@ -26,10 +30,12 @@
       <section class="in-focus-news">
         <h4 style="margin-bottom: 22px">Top News</h4>
         <div v-for="news in newsList" :key="news._id">
-          <div class="in-focus-news-item">
-            <img :src="news.imageUrl" class="in-focus-news-img" alt="" />
-            <h4>{{ news.title }}</h4>
-          </div>
+          <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
+            <div class="in-focus-news-item">
+              <img :src="news.imageUrl" class="in-focus-news-img" alt="" />
+              <h4>{{ news.title }}</h4>
+            </div>
+          </router-link>
         </div>
       </section>
       <section class="slider">
@@ -37,7 +43,11 @@
         <div class="block">
           <el-carousel height="400px">
             <el-carousel-item v-for="item in newsList" :key="item._id">
-              <img :src="item.imageUrl" width="100%" height="100%" alt="" />
+              <router-link
+                :to="{ name: 'singleNews', params: { id: item._id } }"
+              >
+                <img :src="item.imageUrl" width="100%" height="100%" alt="" />
+              </router-link>
             </el-carousel-item>
           </el-carousel>
         </div>
