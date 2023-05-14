@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import NewsService from "@/services/news/NewsService.js";
 import { mapState, mapActions } from "vuex";
 export default {
   data() {
@@ -130,21 +131,31 @@ export default {
             category: this.ruleForm.category,
             imageUrl: this.ruleForm.imageUrl,
           };
-          console.log("payload frontend", payload);
-          const response = await fetch(
-            "http://localhost:3000/api/news/create",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(payload),
-            }
-          );
 
-          const newNews = await response.json();
+          // OLD way
+          // console.log("payload frontend", payload);
+          // const response = await fetch(
+          //   "http://localhost:3000/api/news/create",
+          //   {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify(payload),
+          //   }
+          // );
 
-          console.log(newNews);
+          // const newNews = await response.json();
+
+          // console.log(newNews);
+
+          // New Way
+          try {
+            const newPost = await NewsService.postNews(payload);
+            console.log(newPost);
+          } catch (error) {
+            console.log(error);
+          }
         } else {
           console.log("error submit!!");
           return false;

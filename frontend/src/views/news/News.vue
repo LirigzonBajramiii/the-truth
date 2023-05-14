@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import NewsService from "@/services/news/NewsService.js";
 export default {
   name: "news-view",
   data() {
@@ -55,10 +56,19 @@ export default {
     };
   },
   methods: {
-    async getNews() {
-      const response = await fetch("http://localhost:3000/api/news/list");
-      const data = await response.json();
-      this.newsList = data;
+    async getNewsList() {
+      // Old way
+      // const response = await fetch("http://localhost:3000/api/news/list");
+      // const data = await response.json();
+      // this.newsList = data;
+
+      // New way
+      try {
+        const news = await NewsService.getNews();
+        this.newsList = news?.data;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   computed: {
@@ -66,11 +76,13 @@ export default {
       if (this.newsList) {
         const lastPost = this.newsList[this.newsList?.length - 1];
         return lastPost;
+      } else {
+        return {};
       }
     },
   },
   beforeMount() {
-    this.getNews();
+    this.getNewsList();
   },
 };
 </script>
@@ -157,5 +169,9 @@ export default {
 .slider img {
   object-fit: cover;
   border-radius: 6px;
+}
+
+::v-deep .el-carousel__button {
+  display: none;
 }
 </style>

@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import CategoryService from "@/services/categories/CategoryService.js";
 export default {
   name: "create-category",
   data() {
@@ -48,19 +49,28 @@ export default {
           const payload = {
             title: this.ruleForm.categoryTitle,
           };
-          const response = await fetch(
-            "http://localhost:3000/api/categories/create",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(payload),
-            }
-          );
-          const newCategory = await response.json();
+          // OLD way
+          // const response = await fetch(
+          //   "http://localhost:3000/api/categories/create",
+          //   {
+          //     method: "POST",
+          //     headers: {
+          //       "Content-Type": "application/json",
+          //     },
+          //     body: JSON.stringify(payload),
+          //   }
+          // );
+          // const newCategory = await response.json();
 
-          console.log(newCategory);
+          // console.log(newCategory);
+
+          // New way
+          try {
+            const newCategory = await CategoryService.postCategory(payload);
+            console.log(newCategory);
+          } catch (error) {
+            console.log(error);
+          }
         } else {
           console.log("error submit!!");
           return false;
