@@ -24,6 +24,9 @@
           <router-link to="/news/teknologji">Teknologji</router-link>
         </li>
         <li>
+          <router-link to="/news/allNews">All News</router-link>
+        </li>
+        <li>
           <router-link to="/events">Events</router-link>
         </li>
         <li>
