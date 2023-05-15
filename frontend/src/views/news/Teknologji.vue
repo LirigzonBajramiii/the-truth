@@ -28,8 +28,8 @@
     </div>
     <div class="in-focus">
       <section class="in-focus-news">
-        <h4 style="margin-bottom: 22px">Top News</h4>
-        <div v-for="news in newsList" :key="news._id">
+        <h4 style="margin-bottom: 22px">Sport News</h4>
+        <div v-for="news in latestNews" :key="news._id">
           <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
             <div class="in-focus-news-item">
               <img :src="news.imageUrl" class="in-focus-news-img" alt="" />
@@ -42,7 +42,7 @@
         <h4 style="margin-bottom: 22px">Carousel News</h4>
         <div class="block">
           <el-carousel height="400px">
-            <el-carousel-item v-for="item in newsList" :key="item._id">
+            <el-carousel-item v-for="item in latestNews" :key="item._id">
               <router-link
                 :to="{ name: 'singleNews', params: { id: item._id } }"
               >
@@ -59,7 +59,7 @@
 <script>
 import NewsService from "@/services/news/NewsService.js";
 export default {
-  name: "news-view",
+  name: "teknologji-view",
   data() {
     return {
       newsList: null,
@@ -84,15 +84,20 @@ export default {
   computed: {
     lastNews() {
       if (this.newsList) {
-        const lastPost = this.newsList[this.newsList?.length - 1];
-        return lastPost;
+        const filteredSportNews = this.newsList.filter(
+          (newsObj) => newsObj.category === "Teknologji"
+        );
+        console.log(filteredSportNews);
+        return filteredSportNews[filteredSportNews.length - 1];
       } else {
         return {};
       }
     },
     latestNews() {
       if (this.newsList) {
-        return [...this.newsList].reverse();
+        return [...this.newsList]
+          .filter((newsObj) => newsObj.category === "Teknologji")
+          .reverse();
       } else {
         return [];
       }

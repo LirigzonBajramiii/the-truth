@@ -11,6 +11,10 @@ import Register from "@/views/users/RegisterView.vue";
 import SingleNews from "@/views/news/SingleNews.vue";
 import CreateEvents from "@/views/events/CreateEvents.vue";
 import Event from "@/views/events/Event.vue";
+import Shendetesi from "@/views/news/Shendetesi.vue";
+import Sport from "@/views/news/Sport.vue";
+import Ekonomi from "@/views/news/Ekonomi.vue";
+import Teknologji from "@/views/news/Teknologji.vue";
 
 Vue.use(VueRouter);
 
@@ -71,6 +75,26 @@ const routes = [
     path: "/create/category",
     name: "category",
     component: CreateCategory,
+  },
+  {
+    path: "/news/shendetesi",
+    name: "shendetesi",
+    component: Shendetesi,
+  },
+  {
+    path: "/news/sport",
+    name: "sport",
+    component: Sport,
+  },
+  {
+    path: "/news/ekonomi",
+    name: "ekonomi",
+    component: Ekonomi,
+  },
+  {
+    path: "/news/teknologji",
+    name: "teknologji",
+    component: Teknologji,
   },
 ];
 

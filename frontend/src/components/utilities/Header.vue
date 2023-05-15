@@ -12,6 +12,18 @@
           <router-link to="/news">News</router-link>
         </li>
         <li>
+          <router-link to="/news/shendetesi">Shendetesi</router-link>
+        </li>
+        <li>
+          <router-link to="/news/sport">Sport</router-link>
+        </li>
+        <li>
+          <router-link to="/news/ekonomi">Ekonomi</router-link>
+        </li>
+        <li>
+          <router-link to="/news/teknologji">Teknologji</router-link>
+        </li>
+        <li>
           <router-link to="/events">Events</router-link>
         </li>
         <li>
@@ -69,5 +81,9 @@ export default {
 
 .logo {
   color: #fff;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
