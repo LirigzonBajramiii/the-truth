@@ -78,7 +78,7 @@ export default {
             type: "date",
             required: true,
             message: "Please pick a date",
-            trigger: "change",
+            trigger: "blur",
           },
         ],
         date2: [
@@ -86,7 +86,7 @@ export default {
             type: "date",
             required: true,
             message: "Please pick a time",
-            trigger: "change",
+            trigger: "blur",
           },
         ],
         desc: [
