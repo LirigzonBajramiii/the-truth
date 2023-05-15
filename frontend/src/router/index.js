@@ -9,6 +9,8 @@ import About from "@/views/about/About.vue";
 import Login from "@/views/users/LoginView.vue";
 import Register from "@/views/users/RegisterView.vue";
 import SingleNews from "@/views/news/SingleNews.vue";
+import CreateEvents from "@/views/events/CreateEvents.vue";
+import Event from "@/views/events/Event.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +24,17 @@ const routes = [
     path: "/events",
     name: "events",
     component: Events,
+  },
+  {
+    path: "/create/events",
+    name: "createEvents",
+    component: CreateEvents,
+  },
+  {
+    path: "/event/:id",
+    name: "event",
+    component: Event,
+    props: true,
   },
   {
     path: "/news",

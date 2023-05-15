@@ -21,6 +21,9 @@
           <router-link to="/create/news">Create News</router-link>
         </li>
         <li>
+          <router-link to="/create/events">Create Events</router-link>
+        </li>
+        <li>
           <router-link to="/create/category">Create Category</router-link>
         </li>
         <li>
