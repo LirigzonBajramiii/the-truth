@@ -3,7 +3,9 @@
     <div class="single--news-container">
       <h2 class="title">{{ singleNewsData?.title }}</h2>
       <img class="single--news-img" :src="singleNewsData.imageUrl" alt="" />
-      <p>{{ singleNewsData.createdAt }}</p>
+      <p>
+        {{ formatDistance }}
+      </p>
       <h3 class="category">Category: {{ singleNewsData.category }}</h3>
 
       <p
@@ -20,6 +22,7 @@
 
 <script>
 import NewsService from "@/services/news/NewsService";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 export default {
   name: "Single-News",
@@ -27,12 +30,18 @@ export default {
   data() {
     return {
       singleNewsData: null,
+      formatedDate: null,
     };
   },
   methods: {},
   computed: {
     descriptionsParagraphs() {
       return this.singleNewsData?.desc?.split(".");
+    },
+    formatDistance() {
+      return formatDistanceToNow(new Date(this.singleNewsData.createdAt), {
+        addSuffix: true,
+      });
     },
   },
   async beforeMount() {
