@@ -1,40 +1,38 @@
 <template>
-  <div class="event-container">
-    <div v-for="event in eventsList" :key="event._id" class="event-item">
+  <div>
+    <h3 class="events">Events</h3>
+    <div v-for="event in eventsList" :key="event._id">
       <div class="event-content">
-        {{ event.name }}
-        {{ event.desc }}
+        <h3 class="event-name">{{ event.name }}</h3>
+        <p>{{ event.desc }}</p>
+        <p>Date: {{ event.date1 }}</p>
+        <p>Time: {{ event.date2 }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.event-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 20px;
-  background-color: aliceblue;
-  margin-top: 58px;
-  padding: 20px;
-  flex-direction: column;
-}
-
-.event-item {
-  width: 400px;
-  height: 100px;
-  background-color: white;
-  color: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .event-content {
-  padding: 30px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  width: 60%;
+  padding: 18px;
+  border-radius: 6px;
+  margin: 0 auto;
+  margin-bottom: 14px;
+}
+
+.event-name {
+  margin-bottom: 22px;
+}
+
+.event-content p {
+  margin-bottom: 10px;
+}
+
+.events {
+  text-align: center;
+  margin-bottom: 22px;
 }
 </style>
 
