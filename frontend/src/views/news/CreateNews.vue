@@ -187,12 +187,12 @@ export default {
         });
     },
     ...mapActions({
-      fetchCategories: "fetchCategories",
+      fetchCategories: "categories/fetchCategories",
     }),
   },
   computed: {
     ...mapState({
-      categories: (state) => state.categories,
+      categories: (state) => state.categories.categories,
     }),
   },
   beforeMount() {
