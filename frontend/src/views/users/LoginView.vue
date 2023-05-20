@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { mapMutations } from "vuex";
 export default {
   name: "login-view",
   data() {
@@ -59,10 +61,23 @@ export default {
     };
   },
   methods: {
+    ...mapMutations({
+      SET_USER: "users/SET_USER",
+    }),
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          console.log(this.user);
+          const auth = getAuth();
+          const response = await signInWithEmailAndPassword(
+            auth,
+            this.user.email,
+            this.user.password
+          );
+
+          const user = response.user;
+          // const { user } = response
+          this.SET_USER(user);
+          console.log(user);
         } else {
           console.log("error submit!!");
           return false;

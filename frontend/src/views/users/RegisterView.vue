@@ -39,6 +39,12 @@
 </template>
 
 <script>
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signOut,
+} from "firebase/auth";
 export default {
   name: "register-view",
   data() {
@@ -94,9 +100,26 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          console.log(this.newUser);
+          // Regjistrimi i userit permes firebase/auth
+          const auth = getAuth();
+
+          const response = await createUserWithEmailAndPassword(
+            auth,
+            this.newUser.email,
+            this.newUser.password
+          );
+
+          await updateProfile(response.user, {
+            displayName: this.newUser.firstName,
+          });
+
+          await signOut(auth);
+
+          this.$router.push({ name: "login" });
+
+          console.log(response);
         } else {
           console.log("error submit!!");
           return false;

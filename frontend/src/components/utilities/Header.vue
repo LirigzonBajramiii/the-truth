@@ -47,14 +47,23 @@
         <li>
           <router-link to="/register">Register</router-link>
         </li>
+        <li>
+          <p>Welcome {{ user?.displayName }}</p>
+        </li>
       </ul>
     </nav>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "header-component",
+  computed: {
+    ...mapState({
+      user: (state) => state.users.user,
+    }),
+  },
 };
 </script>
 
