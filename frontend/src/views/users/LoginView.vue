@@ -42,6 +42,11 @@ export default {
             message: "Please enter your email",
             trigger: "blur",
           },
+          {
+            type: "email",
+            message: "Please input correct email address",
+            trigger: ["blur", "change"],
+          },
         ],
         password: [
           {
