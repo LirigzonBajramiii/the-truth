@@ -17,6 +17,7 @@ export default {
     // const { user } = response
     commit("SET_USER", user);
   },
+
   async registerUser(_, payload) {
     const { email, password, firstName } = payload;
     // Regjistrimi i userit permes firebase/auth
@@ -33,7 +34,11 @@ export default {
     });
 
     await signOut(auth);
+  },
 
-    // this.$router.push({ name: "login" });
+  async logOut() {
+    console.log("logout call");
+    const auth = getAuth();
+    await signOut(auth);
   },
 };

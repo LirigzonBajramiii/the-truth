@@ -98,19 +98,40 @@ export default {
       registerUser: "users/registerUser",
     }),
     submitForm(formName) {
-      this.$refs[formName].validate(async (valid) => {
-        if (valid) {
-          const payload = {
-            email: this.newUser.email,
-            password: this.newUser.password,
-            firstName: this.newUser.firstName,
-          };
-          this.registerUser(payload);
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
+      try {
+        this.$refs[formName].validate(async (valid) => {
+          if (valid) {
+            const payload = {
+              email: this.newUser.email,
+              password: this.newUser.password,
+              firstName: this.newUser.firstName,
+            };
+
+            await this.registerUser(payload);
+
+            this.$notify({
+              title: "Success",
+              message: "You are registered successfully",
+              type: "success",
+            });
+
+            this.newUser.email = "";
+            this.newUser.password = "";
+            this.newUser.firstName = "";
+            this.newUser.lastName = "";
+
+            this.$router.push({ name: "login" });
+          } else {
+            this.$notify.error({
+              title: "Error",
+              message: "Register failed. Please try again",
+            });
+            return false;
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();

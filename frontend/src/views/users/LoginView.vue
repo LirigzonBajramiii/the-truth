@@ -64,19 +64,42 @@ export default {
       loginUser: "users/loginUser",
     }),
     submitForm(formName) {
-      this.$refs[formName].validate(async (valid) => {
-        if (valid) {
-          const payload = {
-            email: this.user.email,
-            password: this.user.password,
-          };
+      try {
+        this.$refs[formName].validate(async (valid) => {
+          if (valid) {
+            const payload = {
+              email: this.user.email,
+              password: this.user.password,
+            };
 
-          this.loginUser(payload);
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
+            try {
+              await this.loginUser(payload);
+            } catch (error) {
+              this.$notify.error({
+                title: "Error",
+                message: error?.message,
+              });
+              return;
+            }
+
+            this.$notify({
+              title: "Success",
+              message: "You are logged in successfully",
+              type: "success",
+            });
+
+            this.user.email = "";
+            this.user.password = "";
+          } else {
+            this.$notify.error({
+              title: "Error",
+              message: "Login failed. Please try again",
+            });
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();

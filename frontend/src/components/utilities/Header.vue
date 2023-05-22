@@ -41,28 +41,41 @@
         <li>
           <router-link to="/create/category">Create Category</router-link>
         </li>
-        <li>
+        <li v-if="!user">
           <router-link to="/login">Login</router-link>
         </li>
-        <li>
+        <li v-if="!user">
           <router-link to="/register">Register</router-link>
         </li>
-        <li>
+        <li v-if="user">
           <p>Welcome {{ user?.displayName }}</p>
         </li>
+        <button v-if="user" @click="logOutHandler">LogOut</button>
       </ul>
     </nav>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 export default {
   name: "header-component",
   computed: {
     ...mapState({
       user: (state) => state.users.user,
     }),
+  },
+  methods: {
+    ...mapActions({
+      logOut: "users/logOut",
+    }),
+    ...mapMutations({
+      SET_USER: "users/SET_USER",
+    }),
+    logOutHandler() {
+      this.SET_USER(null);
+      this.logOut();
+    },
   },
 };
 </script>
