@@ -10,9 +10,7 @@ import users from "./modules/users";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    categories: null,
-  },
+  state: {},
   getters: {},
   mutations: {},
   actions: {},

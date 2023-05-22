@@ -39,12 +39,7 @@
 </template>
 
 <script>
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signOut,
-} from "firebase/auth";
+import { mapActions } from "vuex";
 export default {
   name: "register-view",
   data() {
@@ -64,8 +59,8 @@ export default {
           },
           {
             min: 3,
-            max: 5,
-            message: "Length should be 3 to 5",
+            max: 100,
+            message: "Length should be 3 to 100",
             trigger: "blur",
           },
         ],
@@ -99,27 +94,18 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      registerUser: "users/registerUser",
+    }),
     submitForm(formName) {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          // Regjistrimi i userit permes firebase/auth
-          const auth = getAuth();
-
-          const response = await createUserWithEmailAndPassword(
-            auth,
-            this.newUser.email,
-            this.newUser.password
-          );
-
-          await updateProfile(response.user, {
-            displayName: this.newUser.firstName,
-          });
-
-          await signOut(auth);
-
-          this.$router.push({ name: "login" });
-
-          console.log(response);
+          const payload = {
+            email: this.newUser.email,
+            password: this.newUser.password,
+            firstName: this.newUser.firstName,
+          };
+          this.registerUser(payload);
         } else {
           console.log("error submit!!");
           return false;
