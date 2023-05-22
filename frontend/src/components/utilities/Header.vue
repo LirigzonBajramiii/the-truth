@@ -48,9 +48,13 @@
           <router-link to="/register">Register</router-link>
         </li>
         <li v-if="user">
-          <p>Welcome {{ user?.displayName }}</p>
+          <p>
+            Welcome, <strong> {{ user?.displayName }} </strong>
+          </p>
         </li>
-        <button v-if="user" @click="logOutHandler">LogOut</button>
+        <li>
+          <el-button v-if="user" @click="logOutHandler" plain>Logout</el-button>
+        </li>
       </ul>
     </nav>
   </div>
@@ -92,6 +96,7 @@ export default {
 
 .nav-list {
   display: flex;
+  align-items: center;
   gap: 20px;
 }
 

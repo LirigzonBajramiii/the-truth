@@ -88,6 +88,8 @@ export default {
               type: "success",
             });
 
+            this.$router.push({ name: "news" });
+
             this.user.email = "";
             this.user.password = "";
           } else {
