@@ -17,6 +17,7 @@ import Ekonomi from "@/views/news/Ekonomi.vue";
 import Teknologji from "@/views/news/Teknologji.vue";
 import AllNews from "@/views/news/AllNews.vue";
 import EditNews from "@/views/news/EditNews.vue";
+import CategoriesList from "@/views/categories/CategoriesList.vue";
 
 Vue.use(VueRouter);
 
@@ -107,6 +108,11 @@ const routes = [
     path: "/news/allNews",
     name: "AllNews",
     component: AllNews,
+  },
+  {
+    path: "/categories",
+    name: "Categories",
+    component: CategoriesList,
   },
 ];
 
