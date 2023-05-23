@@ -7,12 +7,22 @@
           <el-input placeholder="Search your news" v-model="search"></el-input>
         </div>
         <div v-for="news in filteredNews" :key="news._id">
-          <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
-            <div class="in-focus-news-item">
-              <img :src="news.imageUrl" class="in-focus-news-img" alt="" />
-              <h4>{{ news.title }}</h4>
+          <div class="news-content">
+            <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
+              <div class="in-focus-news-item">
+                <img :src="news.imageUrl" class="in-focus-news-img" alt="" />
+                <h4>{{ news.title }}</h4>
+              </div>
+            </router-link>
+            <div class="controls">
+              <el-button type="warning" @click="editNewsHandler(news._id)"
+                >Edit</el-button
+              >
+              <el-button type="danger" @click="deleteNews(news._id)"
+                >Delete</el-button
+              >
             </div>
-          </router-link>
+          </div>
         </div>
       </section>
     </div>
@@ -43,6 +53,14 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    async editNewsHandler(id) {
+      this.$router.push({ name: "editNews", params: { id: id } });
+    },
+    async deleteNews(id) {
+      console.log(id);
+      await NewsService.deleteNews(id);
+      this.newsList = this.newsList.filter((item) => item._id !== id);
     },
   },
   computed: {
@@ -176,5 +194,14 @@ a:active {
 
 a:hover {
   color: #d6197d;
+}
+
+.news-content {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 40px;
+}
+
+.controls {
 }
 </style>

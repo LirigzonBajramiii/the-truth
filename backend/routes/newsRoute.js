@@ -56,13 +56,26 @@ router.post("/create", async (req, res) => {
 });
 
 // PUT news
-router.put("/list/:id", (req, res) => {
-  res.json({ message: "Update news" });
+router.put("/list/:id", async (req, res) => {
+  await newsModel.updateOne({ _id: req.params.id }, req.body);
+
+  const updatedNews = await newsModel.find({
+    _id: req.params.id,
+  });
+
+  return res.json(updatedNews);
 });
 
 // DELETE news
-router.delete("/list/:id", (req, res) => {
-  res.json({ message: "Delete news" });
+router.delete("/list/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    await newsModel.deleteOne({ _id: id });
+    return res.json({ deleted: true });
+  } catch (error) {
+    return res.status(404).json({ error: error.message });
+  }
 });
 
 module.exports = router;

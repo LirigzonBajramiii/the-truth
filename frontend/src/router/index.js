@@ -16,6 +16,7 @@ import Sport from "@/views/news/Sport.vue";
 import Ekonomi from "@/views/news/Ekonomi.vue";
 import Teknologji from "@/views/news/Teknologji.vue";
 import AllNews from "@/views/news/AllNews.vue";
+import EditNews from "@/views/news/EditNews.vue";
 
 Vue.use(VueRouter);
 
@@ -51,6 +52,11 @@ const routes = [
     name: "singleNews",
     component: SingleNews,
     props: true,
+  },
+  {
+    path: "/edit-news",
+    name: "editNews",
+    component: EditNews,
   },
   {
     path: "/create/news",

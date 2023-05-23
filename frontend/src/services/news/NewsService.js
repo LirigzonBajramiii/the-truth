@@ -10,4 +10,10 @@ export default {
   getSingleNews(id) {
     return apiCaller.get(`/api/news/list/${id}`);
   },
+  deleteNews(id) {
+    return apiCaller.delete(`/api/news/list/${id}`);
+  },
+  editNews(id, payload) {
+    return apiCaller.put(`/api/news/list/${id}`, payload);
+  },
 };
