@@ -49,7 +49,7 @@
         </li>
         <li v-if="user">
           <p>
-            Welcome, <strong> {{ user?.displayName }} </strong>
+            | Welcome, <strong> {{ user?.displayName }} </strong>
           </p>
         </li>
         <li>
@@ -78,7 +78,14 @@ export default {
     }),
     logOutHandler() {
       this.SET_USER(null);
+      this.$router.push({ name: "login" });
       this.logOut();
+
+      this.$notify({
+        title: "Success",
+        message: "You are logged out successfully",
+        type: "success",
+      });
     },
   },
 };
