@@ -7,6 +7,14 @@
         <p>{{ event.desc }}</p>
         <p>Date: {{ event.date1 }}</p>
         <p>Time: {{ event.date2 }}</p>
+        <div class="controls">
+          <el-button type="warning" @click="editEventsHandler(event._id)"
+            >Edit</el-button
+          >
+          <el-button type="danger" @click="deleteEvent(event._id)"
+            >Delete</el-button
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -53,6 +61,14 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    async editEventsHandler(id) {
+      this.$router.push({ name: "editEvent", params: { id: id } });
+    },
+    async deleteEvent(id) {
+      console.log(id);
+      await EventsService.deleteEvent(id);
+      this.eventsList = this.eventsList.filter((item) => item._id !== id);
     },
   },
   beforeMount() {

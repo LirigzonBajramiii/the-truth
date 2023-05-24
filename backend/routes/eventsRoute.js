@@ -14,7 +14,7 @@ router.get("/list", async (req, res) => {
 });
 
 //GET an event
-router.get("/list:id", async (req, res) => {
+router.get("/list/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -24,7 +24,7 @@ router.get("/list:id", async (req, res) => {
     }
     const event = await eventsModel.findById(id);
 
-    if (event) {
+    if (!event) {
       res.status(404).json({ error: "No such event" });
     }
 
@@ -55,13 +55,26 @@ router.post("/create", async (req, res) => {
 });
 
 //PUT events
-router.put("/list/:id", (req, res) => {
-  res.json({ message: "Update events" });
+router.put("/list/:id", async (req, res) => {
+  await eventsModel.updateOne({ _id: req.params.id }, req.body);
+
+  const updatedEvents = await eventsModel.find({
+    _id: req.params.id,
+  });
+
+  return res.json(updatedEvents);
 });
 
 //DELETE events
-router.delete("/list/:id", (req, res) => {
-  res.json({ message: "Delete events" });
+router.delete("/list/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    await eventsModel.deleteOne({ _id: id });
+    return res.json({ deleted: true });
+  } catch (error) {
+    return res.status(404).json({ error: error.message });
+  }
 });
 
 module.exports = router;

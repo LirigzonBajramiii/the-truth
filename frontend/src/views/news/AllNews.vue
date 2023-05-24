@@ -201,7 +201,4 @@ a:hover {
   grid-template-columns: 3fr 1fr;
   gap: 40px;
 }
-
-.controls {
-}
 </style>

@@ -10,4 +10,10 @@ export default {
   getEvent(id) {
     return apiCaller.get(`/api/events/list/${id}`);
   },
+  deleteEvent(id) {
+    return apiCaller.delete(`/api/events/list/${id}`);
+  },
+  editEvent(id, payload) {
+    return apiCaller.put(`/api/events/list/${id}`, payload);
+  },
 };
