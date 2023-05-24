@@ -55,8 +55,8 @@ export default {
     return {
       ruleForm: {
         name: "",
-        date1: "",
-        date2: "",
+        date1: null,
+        date2: null,
         desc: "",
       },
       rules: {
@@ -75,7 +75,6 @@ export default {
         ],
         date1: [
           {
-            type: "date",
             required: true,
             message: "Please pick a date",
             trigger: "blur",
@@ -83,7 +82,6 @@ export default {
         ],
         date2: [
           {
-            type: "date",
             required: true,
             message: "Please pick a time",
             trigger: "blur",
@@ -105,8 +103,8 @@ export default {
         if (valid) {
           const payload = {
             name: this.ruleForm.name,
-            date1: this.ruleForm.date1,
-            date2: this.ruleForm.date2,
+            date1: this.ruleForm.date1 ? new Date(this.ruleForm.date1) : null, // Convert to Date object or set to null
+            date2: this.ruleForm.date2 ? new Date(this.ruleForm.date2) : null, // Convert to Date object or set to null
             desc: this.ruleForm.desc,
           };
           try {
@@ -133,7 +131,8 @@ export default {
   async beforeMount() {
     const id = this.$route.params.id;
     const selectedEvent = await EventsService.getEvent(id);
-    const data = await selectedEvent.data;
+    const data = await selectedEvent?.data;
+    console.log("event data", data);
 
     this.ruleForm.name = data?.name;
     this.ruleForm.date1 = data?.date1;
