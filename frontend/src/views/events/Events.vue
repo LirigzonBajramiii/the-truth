@@ -1,7 +1,8 @@
 <template>
   <div>
     <h3 class="events">Events</h3>
-    <div v-for="event in eventsList" :key="event._id">
+    <el-input placeholder="Search your news" v-model="search"></el-input>
+    <div v-for="event in filteredEvents" :key="event._id">
       <div class="event-content">
         <div>
           <router-link :to="{ name: 'event', params: { id: event._id } }">
@@ -58,6 +59,7 @@ export default {
   data() {
     return {
       eventsList: null,
+      search: "",
     };
   },
   methods: {
@@ -76,6 +78,16 @@ export default {
       console.log(id);
       await EventsService.deleteEvent(id);
       this.eventsList = this.eventsList.filter((item) => item._id !== id);
+    },
+  },
+  computed: {
+    filteredEvents() {
+      if (this.search) {
+        return this.eventsList?.filter((item) =>
+          item?.name.toLowerCase().includes(this.search)
+        );
+      }
+      return this.eventsList;
     },
   },
   beforeMount() {
