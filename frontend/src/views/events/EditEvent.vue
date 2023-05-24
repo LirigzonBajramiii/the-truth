@@ -110,9 +110,19 @@ export default {
           try {
             const id = this.$route.params.id;
             const newPost = await EventsService.editEvent(id, payload);
+            this.$router.push({ name: "events" });
             console.log(newPost);
+            this.$notify({
+              title: "Success",
+              message: "Edit updated  successfully",
+              type: "success",
+            });
           } catch (error) {
             console.log(error);
+            this.$notify.error({
+              title: "Error",
+              message: "Updating failed. Please try again",
+            });
           }
         } else {
           console.log("error submit");

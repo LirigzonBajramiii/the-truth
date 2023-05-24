@@ -3,10 +3,14 @@
     <h3 class="events">Events</h3>
     <div v-for="event in eventsList" :key="event._id">
       <div class="event-content">
-        <h3 class="event-name">{{ event.name }}</h3>
-        <p>{{ event.desc }}</p>
-        <p>Date: {{ event.date1 }}</p>
-        <p>Time: {{ event.date2 }}</p>
+        <div>
+          <router-link :to="{ name: 'event', params: { id: event._id } }">
+            <h3 class="event-name">{{ event.name }}</h3>
+            <p>Date: {{ event.date1 }}</p>
+            <p>Time: {{ event.date2 }}</p>
+          </router-link>
+        </div>
+
         <div class="controls">
           <el-button type="warning" @click="editEventsHandler(event._id)"
             >Edit</el-button
@@ -28,6 +32,9 @@
   border-radius: 6px;
   margin: 0 auto;
   margin-bottom: 14px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
 }
 
 .event-name {
