@@ -5,7 +5,7 @@
       :rules="rules"
       ref="ruleForm"
       label-width="120px"
-      class="demo-ruleForm"
+      class="demo-ruleForm create-event-form"
     >
       <el-form-item label="Event name" prop="name">
         <el-input v-model="ruleForm.name"></el-input>
@@ -21,7 +21,7 @@
             ></el-date-picker>
           </el-form-item>
         </el-col>
-        <el-col class="line" :span="2">-</el-col>
+        <el-col class="line">-</el-col>
         <el-col :span="11">
           <el-form-item prop="date2">
             <el-time-picker
@@ -132,4 +132,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.create-event-form {
+  margin: 0 auto;
+  width: 60%;
+}
+</style>

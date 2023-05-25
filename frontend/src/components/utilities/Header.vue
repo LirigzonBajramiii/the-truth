@@ -5,9 +5,9 @@
         <h3 class="logo">The Truth</h3>
       </router-link>
       <ul class="nav-list">
-        <li>
+        <!-- <li>
           <router-link to="/">Home</router-link>
-        </li>
+        </li> -->
         <li>
           <router-link to="/news">News</router-link>
         </li>
@@ -32,9 +32,9 @@
         <li>
           <router-link to="/categories">Categories</router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link to="/about">About</router-link>
-        </li>
+        </li> -->
         <li>
           <router-link to="/create/news">Create News</router-link>
         </li>

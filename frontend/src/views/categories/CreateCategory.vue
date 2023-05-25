@@ -6,9 +6,9 @@
         :rules="rules"
         ref="ruleForm"
         label-width="120px"
-        class="demo-ruleForm"
+        class="demo-ruleForm create-category-form"
       >
-        <el-form-item label="Category title" prop="categoryTitle">
+        <el-form-item label="Category Title" prop="categoryTitle">
           <el-input v-model="ruleForm.categoryTitle"></el-input>
         </el-form-item>
         <el-form-item>
@@ -84,4 +84,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.create-category-form {
+  margin: 0 auto;
+  width: 60%;
+}
+</style>

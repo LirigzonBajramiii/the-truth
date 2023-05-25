@@ -62,7 +62,7 @@ export default {
 }
 
 .e-details {
-  color: #495057;
+  color: #212529;
   margin: 0;
 }
 </style>
