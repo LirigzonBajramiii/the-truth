@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h3 class="events">Events</h3>
-    <el-input placeholder="Search your news" v-model="search"></el-input>
+    <div class="search_event">
+      <h3 class="events">Events</h3>
+      <el-input placeholder="Search events" v-model="search"></el-input>
+    </div>
     <div v-for="event in filteredEvents" :key="event._id">
       <div class="event-content">
         <div>
@@ -24,33 +26,6 @@
     </div>
   </div>
 </template>
-
-<style scoped>
-.event-content {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  width: 60%;
-  padding: 18px;
-  border-radius: 6px;
-  margin: 0 auto;
-  margin-bottom: 14px;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
-}
-
-.event-name {
-  margin-bottom: 22px;
-}
-
-.event-content p {
-  margin-bottom: 10px;
-}
-
-.events {
-  text-align: center;
-  margin-bottom: 22px;
-}
-</style>
 
 <script>
 import EventsService from "@/services/events/EventsService.js";
@@ -95,3 +70,42 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.search_event {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 0 auto;
+  width: 60%;
+  margin-bottom: 22px;
+}
+
+.event-content {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  width: 60%;
+  padding: 18px;
+  border-radius: 6px;
+  margin: 0 auto;
+  margin-bottom: 14px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+}
+
+.event-content a {
+  text-decoration: none;
+  color: #000;
+}
+.event-name {
+  margin-bottom: 22px;
+}
+
+.event-content p {
+  margin-bottom: 10px;
+}
+
+.events {
+  text-align: center;
+}
+</style>
