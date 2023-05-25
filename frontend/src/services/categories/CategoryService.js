@@ -7,4 +7,13 @@ export default {
   postCategory(newCategory) {
     return apiCaller.post("/api/categories/create", newCategory);
   },
+  editCategory(id, payload) {
+    return apiCaller.put(`/api/categories/list/${id}`, payload);
+  },
+  getCategory(id) {
+    return apiCaller.put(`/api/categories/list/${id}`);
+  },
+  deleteCategory(id) {
+    return apiCaller.delete(`/api/categories/list/${id}`);
+  },
 };

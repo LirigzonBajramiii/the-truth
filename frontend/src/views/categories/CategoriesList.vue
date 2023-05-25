@@ -7,8 +7,12 @@
           <div class="categories">
             <h4>{{ category.title }}</h4>
             <div>
-              <el-button type="warning">Edit</el-button>
-              <el-button type="danger">Delete</el-button>
+              <el-button type="warning" @click="editCategory(category._id)"
+                >Edit</el-button
+              >
+              <el-button type="danger" @click="deleteCategory(category._id)"
+                >Delete</el-button
+              >
             </div>
           </div>
         </div>
@@ -18,6 +22,7 @@
 </template>
 
 <script>
+import CategoryService from "@/services/categories/CategoryService";
 import { mapActions, mapState } from "vuex";
 export default {
   name: "CategoriesList",
@@ -33,6 +38,14 @@ export default {
     ...mapActions({
       fetchCategories: "categories/fetchCategories",
     }),
+    async editCategory(id) {
+      this.$router.push({ name: "editCategory", params: { id: id } });
+    },
+    async deleteCategory(id) {
+      await CategoryService.deleteCategory(id);
+      this.categories = this.categories.filter((item) => item._id !== id);
+      this.fetchCategories();
+    },
   },
   beforeMount() {
     this.fetchCategories();

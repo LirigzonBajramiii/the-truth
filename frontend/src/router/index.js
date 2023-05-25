@@ -19,6 +19,7 @@ import AllNews from "@/views/news/AllNews.vue";
 import EditNews from "@/views/news/EditNews.vue";
 import CategoriesList from "@/views/categories/CategoriesList.vue";
 import EditEvent from "@/views/events/EditEvent.vue";
+import EditCategory from "@/views/categories/EditCategory.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -113,6 +114,11 @@ const routes = [
     path: "/categories",
     name: "Categories",
     component: CategoriesList,
+  },
+  {
+    path: "/edit-category",
+    name: "editCategory",
+    component: EditCategory,
   },
   {
     path: "/edit-event",
