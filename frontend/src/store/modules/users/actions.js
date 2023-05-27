@@ -1,10 +1,8 @@
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signOut,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, signOut, signInWithEmailAndPassword } from "firebase/auth";
+
+import UserService from "@/services/users/UserService";
+import db from "@/firebase/db";
+import { getDoc, doc } from "firebase/firestore";
 
 export default {
   async loginUser({ commit }, payload) {
@@ -14,26 +12,46 @@ export default {
     const response = await signInWithEmailAndPassword(auth, email, password);
 
     const user = response.user;
+
+    // Retrieve user role from Firestore
+    const roleDocRef = doc(db, "roles", user.uid);
+    const roleDocSnapshot = await getDoc(roleDocRef);
+
+    let userRole = null;
+
+    if (roleDocSnapshot.exists()) {
+      const roleData = roleDocSnapshot.data();
+      userRole = roleData.role;
+    }
+
+    const userWithRole = {
+      ...user,
+      role: userRole,
+    };
+
+    console.log(userWithRole);
+
     // const { user } = response
-    commit("SET_USER", user);
+    commit("SET_USER", userWithRole);
   },
 
   async registerUser(_, payload) {
-    const { email, password, firstName } = payload;
-    // Regjistrimi i userit permes firebase/auth
-    const auth = getAuth();
+    // Forma e vjeter ku useri u kriju direkt frontend-firebase
+    // const { email, password, firstName } = payload;
+    // // Regjistrimi i userit permes firebase/auth
+    // const auth = getAuth();
+    // const response = await createUserWithEmailAndPassword(
+    //   auth,
+    //   email,
+    //   password
+    // );
+    // await updateProfile(response.user, {
+    //   displayName: firstName,
+    // });
+    // await signOut(auth);
 
-    const response = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    await updateProfile(response.user, {
-      displayName: firstName,
-    });
-
-    await signOut(auth);
+    // Forma  e re ku useri krijohet ne kete relacion frontend-api-firebase
+    await UserService.register(payload);
   },
 
   async logOut() {
