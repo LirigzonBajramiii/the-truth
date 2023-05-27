@@ -23,25 +23,25 @@
         <li>
           <router-link to="/news/teknologji">Teknologji</router-link>
         </li>
-        <li>
+        <li v-if="user?.role.admin">
           <router-link to="/news/allNews">All News</router-link>
         </li>
         <li>
           <router-link to="/events">Events</router-link>
         </li>
-        <li>
+        <li v-if="user?.role.admin">
           <router-link to="/categories">Categories</router-link>
         </li>
         <!-- <li>
           <router-link to="/about">About</router-link>
         </li> -->
-        <li>
+        <li v-if="user?.role.admin">
           <router-link to="/create/news">Create News</router-link>
         </li>
-        <li>
+        <li v-if="user?.role.admin">
           <router-link to="/create/events">Create Events</router-link>
         </li>
-        <li>
+        <li v-if="user?.role.admin">
           <router-link to="/create/category">Create Category</router-link>
         </li>
         <li v-if="!user">
