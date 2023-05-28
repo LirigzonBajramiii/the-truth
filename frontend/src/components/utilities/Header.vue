@@ -35,7 +35,7 @@
         <!-- <li>
           <router-link to="/about">About</router-link>
         </li> -->
-        <li v-if="user?.role.admin">
+        <!-- <li v-if="user?.role.admin">
           <router-link to="/create/news">Create News</router-link>
         </li>
         <li v-if="user?.role.admin">
@@ -43,6 +43,9 @@
         </li>
         <li v-if="user?.role.admin">
           <router-link to="/create/category">Create Category</router-link>
+        </li> -->
+        <li v-if="user?.role.admin">
+          <router-link to="/admin-dashboard">Admin Dashboard</router-link>
         </li>
         <li v-if="!user">
           <router-link to="/login">Login</router-link>

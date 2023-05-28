@@ -20,6 +20,8 @@ import EditNews from "@/views/news/EditNews.vue";
 import CategoriesList from "@/views/categories/CategoriesList.vue";
 import EditEvent from "@/views/events/EditEvent.vue";
 import EditCategory from "@/views/categories/EditCategory.vue";
+import AdminDashboard from "@/views/admin/AdminDashboard.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -33,11 +35,7 @@ const routes = [
     name: "events",
     component: Events,
   },
-  {
-    path: "/create/events",
-    name: "createEvents",
-    component: CreateEvents,
-  },
+
   {
     path: "/event/:id",
     name: "event",
@@ -55,16 +53,7 @@ const routes = [
     component: SingleNews,
     props: true,
   },
-  {
-    path: "/edit-news",
-    name: "editNews",
-    component: EditNews,
-  },
-  {
-    path: "/create/news",
-    name: "createNews",
-    component: CreateNews,
-  },
+
   {
     path: "/about",
     name: "about",
@@ -80,11 +69,7 @@ const routes = [
     name: "register",
     component: Register,
   },
-  {
-    path: "/create/category",
-    name: "category",
-    component: CreateCategory,
-  },
+
   {
     path: "/news/shendetesi",
     name: "shendetesi",
@@ -105,25 +90,59 @@ const routes = [
     name: "teknologji",
     component: Teknologji,
   },
-  {
-    path: "/news/allNews",
-    name: "AllNews",
-    component: AllNews,
-  },
-  {
-    path: "/categories",
-    name: "Categories",
-    component: CategoriesList,
-  },
-  {
-    path: "/edit-category",
-    name: "editCategory",
-    component: EditCategory,
-  },
+
   {
     path: "/edit-event",
     name: "editEvent",
     component: EditEvent,
+  },
+  {
+    path: "/admin-dashboard",
+    name: "adminDashboard",
+    component: AdminDashboard,
+    children: [
+      {
+        path: "/news/allNews",
+        name: "AllNews",
+        component: AllNews,
+      },
+      {
+        path: "/create/news",
+        name: "createNews",
+        component: CreateNews,
+      },
+      {
+        path: "/create/category",
+        name: "category",
+        component: CreateCategory,
+      },
+
+      {
+        path: "/categories",
+        name: "Categories",
+        component: CategoriesList,
+      },
+      {
+        path: "/create/events",
+        name: "createEvents",
+        component: CreateEvents,
+      },
+      {
+        path: "/events",
+        name: "events",
+        component: Events,
+      },
+      {
+        path: "/edit-news",
+        name: "editNews",
+        component: EditNews,
+      },
+      {
+        path: "/edit-category",
+        name: "editCategory",
+        component: EditCategory,
+      },
+    ],
   },
 ];
 

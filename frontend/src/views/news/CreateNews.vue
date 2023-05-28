@@ -204,7 +204,7 @@ export default {
 <style scoped>
 .form-container {
   width: 748px;
-  margin: 50px auto;
+  margin: 0px auto;
 }
 
 ::v-deep .avatar-uploader .el-upload {
@@ -213,6 +213,7 @@ export default {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  border-color: #fff;
 }
 ::v-deep .avatar-uploader .el-upload:hover {
   border-color: #409eff;

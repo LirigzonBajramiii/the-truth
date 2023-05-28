@@ -128,23 +128,6 @@ export default {
   padding-bottom: 10px;
 }
 
-.in-focus {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  gap: 22px;
-  color: #fff;
-  margin-top: 58px;
-}
-
-.in-focus-news {
-  color: #000;
-  width: 100%;
-  height: auto;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  border-radius: 6px;
-}
-
 .in-focus-news-item {
   display: flex;
   gap: 32px;

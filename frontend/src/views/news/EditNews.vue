@@ -225,7 +225,7 @@ export default {
 <style scoped>
 .form-container {
   width: 748px;
-  margin: 50px auto;
+  margin: 0px auto;
 }
 
 ::v-deep .avatar-uploader .el-upload {
