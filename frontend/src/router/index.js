@@ -35,7 +35,6 @@ const routes = [
     name: "events",
     component: Events,
   },
-
   {
     path: "/event/:id",
     name: "event",
@@ -90,12 +89,6 @@ const routes = [
     name: "teknologji",
     component: Teknologji,
   },
-
-  {
-    path: "/edit-event",
-    name: "editEvent",
-    component: EditEvent,
-  },
   {
     path: "/admin-dashboard",
     name: "adminDashboard",
@@ -141,6 +134,11 @@ const routes = [
         path: "/edit-category",
         name: "editCategory",
         component: EditCategory,
+      },
+      {
+        path: "/edit-event",
+        name: "editEvent",
+        component: EditEvent,
       },
     ],
   },

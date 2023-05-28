@@ -14,7 +14,7 @@
           </router-link>
         </div>
 
-        <div class="controls">
+        <div v-if="user?.role.admin" class="controls">
           <el-button type="warning" @click="editEventsHandler(event._id)"
             >Edit</el-button
           >
@@ -29,6 +29,7 @@
 
 <script>
 import EventsService from "@/services/events/EventsService.js";
+import { mapState } from "vuex";
 export default {
   name: "events-view",
   data() {
@@ -56,6 +57,9 @@ export default {
     },
   },
   computed: {
+    ...mapState({
+      user: (state) => state.users.user,
+    }),
     filteredEvents() {
       if (this.search) {
         return this.eventsList?.filter((item) =>
