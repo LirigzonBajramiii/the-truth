@@ -128,7 +128,7 @@ const routes = [
         component: CreateEvents,
       },
       {
-        path: "/events",
+        path: "/admin/events",
         name: "events",
         component: Events,
       },

@@ -2,11 +2,11 @@
   <div>
     <div class="single--news-container">
       <h2 class="title">{{ singleNewsData?.title }}</h2>
-      <img class="single--news-img" :src="singleNewsData.imageUrl" alt="" />
+      <img class="single--news-img" :src="singleNewsData?.imageUrl" alt="" />
       <p>
         {{ formatDistance }}
       </p>
-      <h3 class="category">Category: {{ singleNewsData.category }}</h3>
+      <h3 class="category">Category: {{ singleNewsData?.category }}</h3>
 
       <p
         v-for="(paragraph, index) in descriptionsParagraphs"
@@ -15,7 +15,7 @@
       >
         {{ paragraph }}
       </p>
-      <h4 class="author">Author: {{ singleNewsData.author }}</h4>
+      <h4 class="author">Author: {{ singleNewsData?.author }}</h4>
     </div>
   </div>
 </template>
@@ -39,7 +39,7 @@ export default {
       return this.singleNewsData?.desc?.split(".");
     },
     formatDistance() {
-      return formatDistanceToNow(new Date(this.singleNewsData.createdAt), {
+      return formatDistanceToNow(new Date(this.singleNewsData?.createdAt), {
         addSuffix: true,
       });
     },

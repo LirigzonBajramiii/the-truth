@@ -77,13 +77,13 @@ export default {
   align-items: center;
   gap: 32px;
   margin: 0 auto;
-  width: 60%;
+  width: 80%;
   margin-bottom: 22px;
 }
 
 .event-content {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  width: 60%;
+  width: 80%;
   padding: 18px;
   border-radius: 6px;
   margin: 0 auto;

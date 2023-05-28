@@ -27,7 +27,7 @@ export default {
   display: grid;
   grid-template-columns: 2fr 7fr;
   gap: 42px;
-  background-color: #c1c8d3;
+  background-color: #f1f3f5;
   padding: 12px;
   border-radius: 9px;
   /* height: 100%; */

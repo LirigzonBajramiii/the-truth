@@ -14,7 +14,7 @@
         <router-link to="/news/allNews">All News</router-link>
       </li>
       <li v-if="user?.role.admin">
-        <router-link to="/events">Events</router-link>
+        <router-link to="/admin/events">Events</router-link>
       </li>
       <li v-if="user?.role.admin">
         <router-link to="/categories">Categories</router-link>
