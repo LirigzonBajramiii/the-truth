@@ -51,9 +51,11 @@ export default {
       this.$router.push({ name: "editEvent", params: { id: id } });
     },
     async deleteEvent(id) {
-      console.log(id);
-      await EventsService.deleteEvent(id);
-      this.eventsList = this.eventsList.filter((item) => item._id !== id);
+      if (confirm("Are you sure you want to delete this event?")) {
+        console.log(id);
+        await EventsService.deleteEvent(id);
+        this.eventsList = this.eventsList.filter((item) => item._id !== id);
+      }
     },
   },
   computed: {
