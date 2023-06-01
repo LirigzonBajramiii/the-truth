@@ -7,6 +7,14 @@ import "element-ui/lib/theme-chalk/index.css";
 import locale from "element-ui/lib/locale/lang/en";
 import "./firebase"; // masi sjena tu e use thjesht dojna me e ekzekutu cka do qe ka ne file
 
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
+
 Vue.use(ElementUI, { locale });
 
 Vue.config.productionTip = false;

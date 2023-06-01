@@ -35,19 +35,26 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@300;400;500;700&display=swap");
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .container {
   width: 1200px;
   margin: 0 auto;
   padding: 50px 0;
+}
+
+a {
+  text-decoration: none !important;
 }
 </style>
