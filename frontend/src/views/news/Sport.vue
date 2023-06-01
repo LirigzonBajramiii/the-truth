@@ -20,7 +20,7 @@
           <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
             <div class="news-item">
               <img :src="news.imageUrl" class="other-news-img" alt="" />
-              <h4>{{ news.title }}</h4>
+              <h6>{{ news.title }}</h6>
             </div>
           </router-link>
         </div>
@@ -33,7 +33,7 @@
           <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
             <div class="in-focus-news-item">
               <img :src="news.imageUrl" class="in-focus-news-img" alt="" />
-              <h4>{{ news.title }}</h4>
+              <h5>{{ news.title }}</h5>
             </div>
           </router-link>
         </div>
@@ -113,7 +113,7 @@ export default {
 .latest-news {
   display: grid;
   grid-template-columns: 6fr 3fr;
-  height: 500px;
+  height: auto;
   gap: 22px;
   color: #fff;
   color: #000;
@@ -175,13 +175,13 @@ export default {
 }
 
 .in-focus-news-img {
-  width: 320px !important;
+  width: 320px;
   height: 198px;
   border-radius: 6px;
 }
 
 .slider {
-  height: 500px;
+  /* height: 50px; */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 6px;
@@ -209,5 +209,21 @@ a:active {
 
 a:hover {
   color: #d6197d;
+}
+
+@media (max-width: 1200px) {
+  .latest-news {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .in-focus {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .in-focus-news-img {
+    width: 200px;
+  }
 }
 </style>
