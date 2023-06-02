@@ -4,7 +4,7 @@
       <section class="latest">
         <router-link :to="{ name: 'singleNews', params: { id: lastNews._id } }">
           <div>
-            <h1 style="margin-bottom: 22px">{{ lastNews.title }}</h1>
+            <h4 style="margin-bottom: 22px">{{ lastNews.title }}</h4>
             <img
               class="latest-img"
               :src="lastNews.imageUrl"
@@ -20,7 +20,7 @@
           <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
             <div class="news-item">
               <img :src="news.imageUrl" class="other-news-img" alt="" />
-              <h4>{{ news.title }}</h4>
+              <h6>{{ news.title }}</h6>
             </div>
           </router-link>
         </div>
@@ -28,12 +28,12 @@
     </div>
     <div class="in-focus">
       <section class="in-focus-news">
-        <h4 style="margin-bottom: 22px">Sport News</h4>
+        <h4 style="margin-bottom: 22px">Ekonomi News</h4>
         <div v-for="news in latestNews" :key="news._id">
           <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
             <div class="in-focus-news-item">
               <img :src="news.imageUrl" class="in-focus-news-img" alt="" />
-              <h4>{{ news.title }}</h4>
+              <h5>{{ news.title }}</h5>
             </div>
           </router-link>
         </div>
@@ -121,7 +121,8 @@ export default {
 
 .latest {
   width: 100%;
-  height: 100%;
+  height: 500px;
+  overflow: hidden;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 6px;
@@ -133,8 +134,8 @@ export default {
 
 .other-news {
   width: 100%;
-  overflow: auto;
-  height: auto;
+  overflow: scroll;
+  height: 500px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 6px;
@@ -175,7 +176,7 @@ export default {
 }
 
 .in-focus-news-img {
-  width: 320px !important;
+  width: 320px;
   height: 198px;
   border-radius: 6px;
 }
@@ -209,5 +210,29 @@ a:active {
 
 a:hover {
   color: #d6197d;
+}
+
+@media (max-width: 1200px) {
+  .latest-news {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .in-focus {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .in-focus-news-img {
+    width: 200px;
+  }
+
+  .other-news {
+    height: auto;
+  }
+
+  .latest {
+    height: auto;
+  }
 }
 </style>

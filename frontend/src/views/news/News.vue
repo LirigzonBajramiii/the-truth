@@ -4,7 +4,7 @@
       <section class="latest">
         <router-link :to="{ name: 'singleNews', params: { id: lastNews._id } }">
           <div>
-            <h1 style="margin-bottom: 22px">{{ lastNews.title }}</h1>
+            <h4 style="margin-bottom: 22px">{{ lastNews.title }}</h4>
             <img
               class="latest-img"
               :src="lastNews.imageUrl"
@@ -116,7 +116,8 @@ export default {
 
 .latest {
   width: 100%;
-  height: 100%;
+  height: 500px;
+  overflow: hidden;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 6px;
@@ -128,8 +129,8 @@ export default {
 
 .other-news {
   width: 100%;
-  overflow: auto;
-  height: auto;
+  overflow: scroll;
+  height: 500px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 6px;

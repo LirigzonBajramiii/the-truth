@@ -4,7 +4,7 @@
       <section class="latest">
         <router-link :to="{ name: 'singleNews', params: { id: lastNews._id } }">
           <div>
-            <h1 style="margin-bottom: 22px">{{ lastNews.title }}</h1>
+            <h4 style="margin-bottom: 22px">{{ lastNews.title }}</h4>
             <img
               class="latest-img"
               :src="lastNews.imageUrl"
