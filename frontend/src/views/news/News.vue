@@ -20,7 +20,7 @@
           <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
             <div class="news-item">
               <img :src="news.imageUrl" class="other-news-img" alt="" />
-              <h6>{{ news.title }}</h6>
+              <h6>{{ truncateTitle(news.title) }}</h6>
             </div>
           </router-link>
         </div>
@@ -80,6 +80,13 @@ export default {
         console.log(error);
       }
     },
+    truncateTitle(title) {
+      if (title.length > 49) {
+        return title.substring(0, 49) + "...";
+      } else {
+        return title;
+      }
+    },
   },
   computed: {
     lastNews() {
@@ -90,6 +97,7 @@ export default {
         return {};
       }
     },
+
     latestNews() {
       if (this.newsList) {
         return [...this.newsList].reverse();
