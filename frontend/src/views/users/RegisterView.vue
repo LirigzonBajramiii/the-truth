@@ -29,7 +29,11 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm('newUser')"
+        <el-button
+          type="primary"
+          v-loading="loading"
+          customClass="loadingMin"
+          @click="submitForm('newUser')"
           >Register</el-button
         >
         <el-button @click="resetForm('newUser')">Reset</el-button>
@@ -50,6 +54,7 @@ export default {
         email: "",
         password: "",
       },
+      loading: false,
       rules: {
         firstName: [
           {
@@ -107,7 +112,9 @@ export default {
               firstName: this.newUser.firstName,
             };
 
+            this.loading = true;
             await this.registerUser(payload);
+            this.loading = false;
 
             this.$notify({
               title: "Success",
@@ -141,6 +148,24 @@ export default {
 </script>
 
 <style scoped>
+:deep(.el-loading-spinner .circular) {
+  height: 25px;
+  width: 25px;
+}
+
+:deep(.el-loading-spinner .path) {
+  stroke: #fff;
+}
+
+:deep(.el-loading-mask) {
+  background-color: #409eff;
+}
+
+:deep(.el-loading-spinner) {
+  transform: translateY(40%);
+  border: none;
+  /* margin-bottom: 7px; */
+}
 .register-container {
   max-width: 600px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
