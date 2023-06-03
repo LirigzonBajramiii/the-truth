@@ -2,12 +2,12 @@
   <div>
     <div v-if="loading" class="loading" v-loading="loading"></div>
     <div v-if="!loading" class="single--news-container">
-      <h2 class="title">{{ singleNewsData?.title }}</h2>
+      <h4 class="title">{{ singleNewsData?.title }}</h4>
       <img class="single--news-img" :src="singleNewsData?.imageUrl" alt="" />
       <p>
         {{ formatDistance }}
       </p>
-      <h3 class="category">Category: {{ singleNewsData?.category }}</h3>
+      <h6 class="category">Category: {{ singleNewsData?.category }}</h6>
 
       <p
         v-for="(paragraph, index) in descriptionsParagraphs"
@@ -16,7 +16,7 @@
       >
         {{ paragraph }}
       </p>
-      <h4 class="author">Author: {{ singleNewsData?.author }}</h4>
+      <h5 class="author">Author: {{ singleNewsData?.author }}</h5>
     </div>
   </div>
 </template>
@@ -99,5 +99,27 @@ export default {
   color: #fff;
   margin-top: 22px;
   margin-bottom: 36px;
+}
+
+@media (max-width: 1200px) {
+  .description {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .single--news-img {
+    width: 100%;
+    height: auto;
+    border-radius: 9px;
+    margin-bottom: 22px;
+  }
+
+  .author {
+    font-size: 16px;
+  }
 }
 </style>

@@ -29,6 +29,7 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+    redirect: "/news",
   },
   {
     path: "/events",
@@ -93,6 +94,7 @@ const routes = [
     path: "/admin-dashboard",
     name: "adminDashboard",
     component: AdminDashboard,
+    redirect: "/create/news",
     children: [
       {
         path: "/news/allNews",
