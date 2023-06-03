@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="single--news-container">
+    <div v-if="loading" class="loading" v-loading="loading"></div>
+    <div v-if="!loading" class="single--news-container">
       <h2 class="title">{{ singleNewsData?.title }}</h2>
       <img class="single--news-img" :src="singleNewsData?.imageUrl" alt="" />
       <p>
@@ -31,6 +32,7 @@ export default {
     return {
       singleNewsData: null,
       formatedDate: null,
+      loading: false,
     };
   },
   methods: {},
@@ -45,13 +47,23 @@ export default {
     },
   },
   async beforeMount() {
-    const singleNews = await NewsService.getSingleNews(this.id);
-    this.singleNewsData = singleNews.data;
+    try {
+      this.loading = true;
+      const singleNews = await NewsService.getSingleNews(this.id);
+      this.singleNewsData = singleNews.data;
+      this.loading = false;
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 </script>
 
 <style scoped>
+.loading {
+  margin: auto auto;
+  height: 600px;
+}
 .single--news-container {
   margin: 30px 90px;
 }

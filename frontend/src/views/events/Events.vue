@@ -1,26 +1,29 @@
 <template>
   <div>
-    <div class="search_event">
-      <h3 class="events">Events</h3>
-      <el-input placeholder="Search events" v-model="search"></el-input>
-    </div>
-    <div v-for="event in filteredEvents" :key="event._id">
-      <div class="event-content">
-        <div>
-          <router-link :to="{ name: 'event', params: { id: event._id } }">
-            <h3 class="event-name">{{ event.name }}</h3>
-            <p>Date: {{ event.date1 }}</p>
-            <p>Time: {{ event.date2 }}</p>
-          </router-link>
-        </div>
+    <div v-if="loading" class="loading" v-loading="loading"></div>
+    <div v-if="!loading">
+      <div class="search_event">
+        <h3 class="events">Events</h3>
+        <el-input placeholder="Search events" v-model="search"></el-input>
+      </div>
+      <div v-for="event in filteredEvents" :key="event._id">
+        <div class="event-content">
+          <div>
+            <router-link :to="{ name: 'event', params: { id: event._id } }">
+              <h3 class="event-name">{{ event.name }}</h3>
+              <p>Date: {{ event.date1 }}</p>
+              <p>Time: {{ event.date2 }}</p>
+            </router-link>
+          </div>
 
-        <div v-if="user?.role.admin" class="controls">
-          <el-button type="warning" @click="editEventsHandler(event._id)"
-            >Edit</el-button
-          >
-          <el-button type="danger" @click="deleteEvent(event._id)"
-            >Delete</el-button
-          >
+          <div v-if="user?.role?.admin" class="controls">
+            <el-button type="warning" @click="editEventsHandler(event._id)"
+              >Edit</el-button
+            >
+            <el-button type="danger" @click="deleteEvent(event._id)"
+              >Delete</el-button
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -36,13 +39,16 @@ export default {
     return {
       eventsList: null,
       search: "",
+      loading: false,
     };
   },
   methods: {
     async getEventsList() {
       try {
+        this.loading = true;
         const events = await EventsService.getEvents();
         this.eventsList = await events?.data;
+        this.loading = false;
       } catch (error) {
         console.log(error);
       }
@@ -78,6 +84,10 @@ export default {
 </script>
 
 <style scoped>
+.loading {
+  margin: auto auto;
+  height: 600px;
+}
 .search_event {
   display: flex;
   align-items: center;
