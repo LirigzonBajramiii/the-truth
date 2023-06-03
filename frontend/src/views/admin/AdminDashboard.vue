@@ -30,6 +30,7 @@ export default {
   background-color: #f1f3f5;
   padding: 12px;
   border-radius: 9px;
+  width: 100%;
   /* height: 100%; */
 }
 
@@ -37,9 +38,18 @@ export default {
   padding: 3px 6px;
   height: auto;
   border-right: 4px solid #fff;
+  min-width: 350px;
 }
 
 .view-operations {
   padding: 3px 6px;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
 }
 </style>

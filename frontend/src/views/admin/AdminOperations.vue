@@ -44,7 +44,7 @@ export default {
 .admin-nav a {
   text-decoration: none;
   padding: 10px 20px;
-  background-color: #30476d;
+  background-color: #17a2b8;
   color: #fff;
   display: inline-block;
   width: 100%;

@@ -114,4 +114,15 @@ export default {
 .events {
   text-align: center;
 }
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.controls button {
+  width: 100%;
+  margin: 0px;
+}
 </style>

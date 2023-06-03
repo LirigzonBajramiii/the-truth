@@ -203,7 +203,7 @@ export default {
 
 <style scoped>
 .form-container {
-  width: 748px;
+  width: 100%;
   margin: 0px auto;
 }
 

@@ -11,7 +11,7 @@
             <router-link :to="{ name: 'singleNews', params: { id: news._id } }">
               <div class="in-focus-news-item">
                 <img :src="news.imageUrl" class="in-focus-news-img" alt="" />
-                <h4>{{ news.title }}</h4>
+                <h6>{{ news.title }}</h6>
               </div>
             </router-link>
             <div class="controls">
@@ -128,6 +128,10 @@ export default {
   padding-bottom: 10px;
 }
 
+/* .in-focus {
+  width: 100%;
+} */
+
 .in-focus-news-item {
   display: flex;
   gap: 32px;
@@ -183,5 +187,38 @@ a:hover {
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 40px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.controls button {
+  width: 100%;
+  margin: 0px;
+}
+
+@media (max-width: 1200px) {
+  .in-focus-news-img {
+    max-width: 200px;
+    height: 130px;
+    border-radius: 6px;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .controls button {
+    width: 100%;
+    margin: 0px;
+  }
+
+  .news-content {
+    gap: 10px;
+  }
 }
 </style>
