@@ -6,8 +6,8 @@
       <div class="event-container">
         <div class="details border-right">
           <h3>{{ event.name }}</h3>
-          <h3>Date: {{ event.date1 }}</h3>
-          <h3>Time: {{ event.date2 }}</h3>
+          <h3>Date: {{ event.date1 | formatDate }}</h3>
+          <h3>Time: {{ event.date2 | formatTime }}</h3>
         </div>
         <div class="details">
           <p>
