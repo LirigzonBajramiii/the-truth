@@ -31,6 +31,8 @@ export default {
 
     console.log(userWithRole);
 
+    localStorage.setItem("user", JSON.stringify(userWithRole));
+
     // const { user } = response
     commit("SET_USER", userWithRole);
   },
@@ -58,5 +60,6 @@ export default {
     console.log("logout call");
     const auth = getAuth();
     await signOut(auth);
+    localStorage.clear();
   },
 };

@@ -12,7 +12,10 @@
 <script>
 import Header from "@/components/utilities/Header.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
+
+// import db from "@/firebase/db";
+// import { getDoc, doc } from "firebase/firestore";
 export default {
   name: "app-view",
   components: {
@@ -23,12 +26,36 @@ export default {
       SET_USER: "users/SET_USER",
     }),
   },
+  computed: {
+    ...mapState({
+      user: (state) => state.users.user,
+    }),
+  },
   mounted() {
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        this.SET_USER(user);
+        // const roleDocRef = doc(db, "roles", user.uid);
+        // const roleDocSnapshot = await getDoc(roleDocRef);
+
+        // let userRole = null;
+
+        // if (roleDocSnapshot.exists()) {
+        //   const roleData = roleDocSnapshot.data();
+        //   userRole = roleData.role;
+        // }
+
+        // const userWithRole = {
+        //   ...user,
+        //   role: userRole,
+        // };
+
+        const response = localStorage.getItem("user");
+        const userWithRole = JSON.parse(response);
+        this.SET_USER(userWithRole);
       }
+
+      console.log("from ap", this.user);
     });
   },
 };
