@@ -11,8 +11,8 @@
           <div>
             <router-link :to="{ name: 'event', params: { id: event._id } }">
               <h3 class="event-name">{{ event.name }}</h3>
-              <p>Date: {{ event.date1 }}</p>
-              <p>Time: {{ event.date2 }}</p>
+              <p>Date: {{ event.date1 | formatDate }}</p>
+              <p>Time: {{ event.date2 | formatTime }}</p>
             </router-link>
           </div>
 
