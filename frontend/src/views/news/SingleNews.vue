@@ -17,6 +17,33 @@
         {{ paragraph }}
       </p>
       <h5 class="author">Author: {{ singleNewsData?.author }}</h5>
+
+      <div class="comments">
+        <div>
+          <h5 class="comments-title">Comments:</h5>
+          <label for="">Your comment:</label>
+          <div class="comment-query">
+            <el-input
+              placeholder="Please write your comment"
+              v-model="comment"
+            ></el-input>
+            <el-button type="primary" plain @click="addComment"
+              >Add Comment</el-button
+            >
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 32px">
+        <section v-for="(com, index) in filteredComments" :key="index">
+          <div class="comments-section">
+            <p>{{ com.comment }}</p>
+            <p style="font-size: 14px; margin: 0px">
+              User: <strong>{{ com.userName }}</strong>
+            </p>
+            <span style="font-size: 10px"> Comment #{{ index + 1 }}</span>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +51,8 @@
 <script>
 import NewsService from "@/services/news/NewsService";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import CommentsService from "@/services/comments/CommentsService";
+import { mapState } from "vuex";
 
 export default {
   name: "Single-News",
@@ -33,9 +62,29 @@ export default {
       singleNewsData: null,
       formatedDate: null,
       loading: false,
+      comment: "",
+      commentList: [],
     };
   },
-  methods: {},
+  methods: {
+    async addComment() {
+      const newComment = {
+        userName: this.user.displayName,
+        comment: this.comment,
+        commentId: this.id,
+      };
+
+      const response = await CommentsService.postComment(newComment);
+      console.log(response);
+
+      // Update commentList with the latest comments from the server
+      const res = await CommentsService.getComments();
+      this.commentList = res.data;
+
+      // Clear the comment input field
+      this.comment = "";
+    },
+  },
   computed: {
     descriptionsParagraphs() {
       return this.singleNewsData?.desc?.split(".");
@@ -45,12 +94,27 @@ export default {
         addSuffix: true,
       });
     },
+    filteredComments() {
+      if (this.commentList) {
+        return this.commentList.filter(
+          (comment) => comment.commentId === this.id
+        );
+      } else {
+        return [];
+      }
+    },
+    ...mapState({
+      user: (state) => state.users.user,
+    }),
   },
   async beforeMount() {
     try {
       this.loading = true;
       const singleNews = await NewsService.getSingleNews(this.id);
       this.singleNewsData = singleNews.data;
+
+      const res = await CommentsService.getComments();
+      this.commentList = res.data;
       this.loading = false;
     } catch (error) {
       console.log(error);
@@ -90,6 +154,13 @@ export default {
   margin-bottom: 32px;
 }
 
+.comment-query {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
 .category {
   width: 200px;
   background-color: #30476d;
@@ -99,6 +170,20 @@ export default {
   color: #fff;
   margin-top: 22px;
   margin-bottom: 36px;
+}
+
+.comments-section {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  margin: 10px 0px;
+}
+
+.comments-title {
+  color: #17a2b8;
+}
+
+.comments {
+  margin-top: 62px;
 }
 
 @media (max-width: 1200px) {

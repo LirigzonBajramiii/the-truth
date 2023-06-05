@@ -7,7 +7,7 @@ const categoriesRouter = require("./routes/categoriesRoute");
 const uploadImgRouter = require("./routes/uploadImgRoute");
 const eventsRouter = require("./routes/eventsRoute");
 const userRouter = require("./routes/userRoute");
-
+const commentsRouter = require("./routes/commentsRoute");
 // Krijimi i nje express app
 const app = express();
 app.use(cors()); // enables request from frontend
@@ -23,6 +23,7 @@ app.use("/api/categories", categoriesRouter);
 app.use("/api/upload", uploadImgRouter);
 app.use("/api/events", eventsRouter);
 app.use("/api/user", userRouter);
+app.use("/api/comments", commentsRouter);
 
 mongoose
   .connect(process.env.MONGO_URI)
