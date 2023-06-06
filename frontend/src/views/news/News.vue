@@ -66,6 +66,7 @@
 import NewsService from "@/services/news/NewsService.js";
 export default {
   name: "news-view",
+
   data() {
     return {
       newsList: null,

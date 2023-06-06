@@ -6,6 +6,7 @@
     <div class="container">
       <router-view />
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -13,6 +14,7 @@
 import Header from "@/components/utilities/Header.vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { mapMutations, mapState } from "vuex";
+import Footer from "@/components/utilities/Footer.vue";
 
 // import db from "@/firebase/db";
 // import { getDoc, doc } from "firebase/firestore";
@@ -20,6 +22,7 @@ export default {
   name: "app-view",
   components: {
     Header,
+    Footer,
   },
   methods: {
     ...mapMutations({
