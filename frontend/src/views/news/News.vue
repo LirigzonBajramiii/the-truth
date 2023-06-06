@@ -123,6 +123,19 @@ export default {
 </script>
 
 <style scoped>
+.other-news::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 100px;
+}
+.other-news::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 100px;
+}
+
+.other-news::-webkit-scrollbar-thumb {
+  background-color: #17a2b8;
+  border-radius: 100px;
+}
 .latest-news {
   display: grid;
   grid-template-columns: 6fr 3fr;
