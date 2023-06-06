@@ -67,6 +67,11 @@
             </li>
           </b-nav-item>
           <b-nav-item>
+            <li>
+              <router-link to="/about">Rreth Nesh</router-link>
+            </li>
+          </b-nav-item>
+          <b-nav-item>
             <li v-if="!user">
               <router-link to="/login">Login</router-link>
             </li>
