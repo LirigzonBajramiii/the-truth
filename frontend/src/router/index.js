@@ -21,6 +21,7 @@ import CategoriesList from "@/views/categories/CategoriesList.vue";
 import EditEvent from "@/views/events/EditEvent.vue";
 import EditCategory from "@/views/categories/EditCategory.vue";
 import AdminDashboard from "@/views/admin/AdminDashboard.vue";
+import Users from "@/views/users/Users.vue"
 
 Vue.use(VueRouter);
 
@@ -141,6 +142,11 @@ const routes = [
         path: "/edit-event",
         name: "editEvent",
         component: EditEvent,
+      },
+      {
+        path: "/users",
+        name: "users",
+        component: Users,
       },
     ],
   },

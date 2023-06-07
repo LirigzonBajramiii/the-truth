@@ -31,7 +31,7 @@ export default {
 <style>
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 footer {
-  background-color: #333;
+  background-color: #212529;
   padding: 20px;
   color: #fff;
   text-align: center;

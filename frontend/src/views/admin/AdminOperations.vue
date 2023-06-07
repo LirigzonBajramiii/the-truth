@@ -19,6 +19,9 @@
       <li v-if="user?.role.admin">
         <router-link to="/categories">Categories</router-link>
       </li>
+      <li v-if="user?.role.admin">
+        <router-link to="/users">Users</router-link>
+      </li>
     </div>
   </div>
 </template>
