@@ -4,7 +4,24 @@
       <section class="in-focus-news">
         <div class="title-search-box">
           <h4>All News</h4>
-          <el-input placeholder="Search your news" v-model="search"></el-input>
+          <div class="search-header">
+            <el-input
+              placeholder="Search your news"
+              v-model="search"
+            ></el-input>
+            <div class="arrows">
+              <arrow-down-icon
+                @click="sortAsc"
+                size="1.5x"
+                class="custom-class"
+              ></arrow-down-icon>
+              <arrow-up-icon
+                @click="sortDesc"
+                size="1.5x"
+                class="custom-class"
+              ></arrow-up-icon>
+            </div>
+          </div>
         </div>
         <div v-for="news in filteredNews" :key="news._id">
           <div class="news-content">
@@ -31,8 +48,14 @@
 
 <script>
 import NewsService from "@/services/news/NewsService.js";
+import { ArrowDownIcon } from "vue-feather-icons";
+import { ArrowUpIcon } from "vue-feather-icons";
 export default {
   name: "allNews-view",
+  components: {
+    ArrowDownIcon,
+    ArrowUpIcon,
+  },
   data() {
     return {
       newsList: null,
@@ -53,6 +76,16 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    sortAsc() {
+      this.newsList = this.newsList?.sort((a, b) =>
+        b.title.localeCompare(a.title)
+      );
+    },
+    sortDesc() {
+      this.newsList = this.newsList?.sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
     },
     async editNewsHandler(id) {
       this.$router.push({ name: "editNews", params: { id: id } });
@@ -87,6 +120,14 @@ export default {
 </script>
 
 <style scoped>
+.arrows {
+  display: flex;
+}
+.search-header {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
 .latest-news {
   display: grid;
   grid-template-columns: 6fr 3fr;
