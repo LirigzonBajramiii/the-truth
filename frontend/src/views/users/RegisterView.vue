@@ -133,11 +133,13 @@ export default {
               title: "Error",
               message: "Register failed. Please try again",
             });
+            this.loading = false;
             return false;
           }
         });
       } catch (error) {
         console.log(error);
+        this.loading = false;
       }
     },
     resetForm(formName) {

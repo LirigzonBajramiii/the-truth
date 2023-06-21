@@ -88,6 +88,7 @@ export default {
                 title: "Error",
                 message: error?.message,
               });
+              this.loading = false;
               return;
             }
 
@@ -106,6 +107,7 @@ export default {
               title: "Error",
               message: "Login failed. Please try again",
             });
+            this.loading = false;
           }
         });
       } catch (error) {

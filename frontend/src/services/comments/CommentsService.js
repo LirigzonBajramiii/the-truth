@@ -7,4 +7,7 @@ export default {
   postComment(payload) {
     return apiCaller.post("/api/comments/create", payload);
   },
+  deleteComment(id) {
+    return apiCaller.delete(`/api/comments/${id}`);
+  },
 };

@@ -36,11 +36,18 @@
       <div style="margin-top: 32px">
         <section v-for="(com, index) in filteredComments" :key="index">
           <div class="comments-section">
-            <p>{{ com.comment }}</p>
-            <p style="font-size: 14px; margin: 0px">
-              User: <strong>{{ com.userName }}</strong>
-            </p>
-            <span style="font-size: 10px"> Comment #{{ index + 1 }}</span>
+            <div>
+              <p>{{ com.comment }}</p>
+              <p style="font-size: 14px; margin: 0px">
+                User: <strong>{{ com.userName }}</strong>
+              </p>
+              <span style="font-size: 10px"> Comment #{{ index + 1 }}</span>
+            </div>
+            <div v-if="user?.role?.admin">
+              <el-button type="danger" plain @click="deleteComment(com._id)"
+                >Delete</el-button
+              >
+            </div>
           </div>
         </section>
       </div>
@@ -83,6 +90,19 @@ export default {
 
       // Clear the comment input field
       this.comment = "";
+    },
+
+    async deleteComment(id) {
+      try {
+        const res = await CommentsService.deleteComment(id);
+        console.log(res.data);
+
+        this.commentList = this.commentList?.filter(
+          (comment) => comment._id !== id
+        );
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   computed: {
@@ -173,6 +193,9 @@ export default {
 }
 
 .comments-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   padding: 10px;
   margin: 10px 0px;

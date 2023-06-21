@@ -26,4 +26,15 @@ router.post("/create", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await commentsModel.deleteOne({ _id: id });
+    return res.json({ deleted: true });
+  } catch (error) {
+    return res.status(404).json({ error: error.message });
+  }
+});
+
 module.exports = router;
